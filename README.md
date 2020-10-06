@@ -3,4 +3,4 @@ CIR
 
 ### About
 
-Visualizzatore per centralina controllo riscaldamento
+Visualizzatore node-red per centralina controllo riscaldamento
