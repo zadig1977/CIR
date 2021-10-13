@@ -2728,10 +2728,10 @@
             "5e921595.73646c"
         ],
         "x": 775,
-        "y": 80,
+        "y": 160,
         "wires": [
             [
-                "809242e8.0741f"
+                "8a295a27.9c1188"
             ]
         ]
     },
@@ -3454,10 +3454,10 @@
             "6f30c2b7.575e5c"
         ],
         "x": 775,
-        "y": 160,
+        "y": 80,
         "wires": [
             [
-                "8a295a27.9c1188"
+                "809242e8.0741f"
             ]
         ]
     },
@@ -4057,7 +4057,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "label": "room on",
+        "label": "Stanze accese",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -4084,7 +4084,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 670,
+        "useDifferentColor": false,
+        "x": 690,
         "y": 420,
         "wires": [
             []
