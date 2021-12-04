@@ -167,7 +167,8 @@
                 "primary": "indigo",
                 "accents": "blue",
                 "warn": "red",
-                "background": "grey"
+                "background": "grey",
+                "palette": "light"
             }
         },
         "site": {
@@ -756,8 +757,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 570,
-        "y": 280,
+        "x": 750,
+        "y": 480,
         "wires": [
             []
         ]
@@ -775,7 +776,7 @@
         "payload": "on",
         "payloadType": "str",
         "x": 930,
-        "y": 780,
+        "y": 920,
         "wires": [
             [
                 "34a6299e.947a46"
@@ -792,7 +793,7 @@
         "retain": "",
         "broker": "965f3d6f.d5282",
         "x": 1186,
-        "y": 779,
+        "y": 919,
         "wires": []
     },
     {
@@ -808,7 +809,7 @@
         "payload": "off",
         "payloadType": "str",
         "x": 928,
-        "y": 834,
+        "y": 974,
         "wires": [
             [
                 "34a6299e.947a46"
@@ -828,7 +829,7 @@
         "payload": "toggle",
         "payloadType": "str",
         "x": 928,
-        "y": 726,
+        "y": 866,
         "wires": [
             [
                 "34a6299e.947a46"
@@ -877,7 +878,7 @@
         "retain": "true",
         "broker": "965f3d6f.d5282",
         "x": 642,
-        "y": 758,
+        "y": 898,
         "wires": []
     },
     {
@@ -903,7 +904,7 @@
         "seg1": "18",
         "seg2": "21",
         "x": 614,
-        "y": 844,
+        "y": 984,
         "wires": []
     },
     {
@@ -931,8 +932,8 @@
         "qos": "0",
         "retain": "true",
         "broker": "965f3d6f.d5282",
-        "x": 433,
-        "y": 540,
+        "x": 430,
+        "y": 700,
         "wires": []
     },
     {
@@ -958,8 +959,8 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 174,
-        "y": 596,
+        "x": 171,
+        "y": 756,
         "wires": [
             [
                 "364ba5af.93977a",
@@ -977,8 +978,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 440,
-        "y": 650,
+        "x": 430,
+        "y": 760,
         "wires": []
     },
     {
@@ -993,8 +994,8 @@
         "label": "Setpoint Temperatura Sala",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 527,
-        "y": 457,
+        "x": 470,
+        "y": 620,
         "wires": []
     },
     {
@@ -1005,8 +1006,8 @@
         "topic": "CIR/setpoint/view/sala",
         "qos": "0",
         "broker": "965f3d6f.d5282",
-        "x": 258,
-        "y": 456,
+        "x": 201,
+        "y": 619,
         "wires": [
             [
                 "b735450.89028b8"
@@ -1021,28 +1022,13 @@
         "topic": "CIR/setpoint/pid/sala",
         "qos": "0",
         "broker": "965f3d6f.d5282",
-        "x": 243,
-        "y": 370,
+        "x": 200,
+        "y": 520,
         "wires": [
             [
-                "d758b8d1.90b8b8",
-                "8f38df77.f3763"
+                "d758b8d1.90b8b8"
             ]
         ]
-    },
-    {
-        "id": "8f38df77.f3763",
-        "type": "debug",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 516,
-        "y": 385,
-        "wires": []
     },
     {
         "id": "4891f639.67c4e8",
@@ -1080,8 +1066,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 981,
-        "y": 485,
+        "x": 1040,
+        "y": 700,
         "wires": [
             []
         ]
@@ -1129,8 +1115,8 @@
         "topic": "shellies/shelly1-B97B5D/relay/0",
         "payload": "[]",
         "payloadType": "json",
-        "x": 252,
-        "y": 310,
+        "x": 207,
+        "y": 450,
         "wires": [
             [
                 "d758b8d1.90b8b8",
@@ -1146,8 +1132,8 @@
         "func": "var newMsg = { topic: \"Temp. Sala\", payload: msg.payload };\nreturn newMsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 330,
-        "y": 180,
+        "x": 310,
+        "y": 220,
         "wires": [
             [
                 "d758b8d1.90b8b8"
@@ -1162,8 +1148,8 @@
         "topic": "CIR/pid/sala",
         "qos": "0",
         "broker": "965f3d6f.d5282",
-        "x": 800,
-        "y": 518,
+        "x": 859,
+        "y": 733,
         "wires": [
             [
                 "4891f639.67c4e8",
@@ -1181,8 +1167,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1124,
-        "y": 523,
+        "x": 1183,
+        "y": 738,
         "wires": []
     },
     {
@@ -1196,44 +1182,20 @@
         "order": 3,
         "width": 0,
         "height": 0,
+        "wrap": false,
         "passthru": true,
         "topic": "",
+        "topicType": "str",
         "format": "{{value}}",
         "min": "15",
         "max": "23",
-        "step": "0.1",
+        "step": "0.5",
         "x": 162,
-        "y": 772,
+        "y": 912,
         "wires": [
             [
-                "475407a8.d37da8"
-            ]
-        ]
-    },
-    {
-        "id": "475407a8.d37da8",
-        "type": "ui_slider",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "label": "T. manuale slider",
-        "tooltip": "",
-        "group": "3674120b.bce3be",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "",
-        "min": "15",
-        "max": "23",
-        "step": "0.1",
-        "x": 329,
-        "y": 842,
-        "wires": [
-            [
-                "440765.790f989c",
                 "1b9a1b00.e27515",
-                "20f84617.7fd84a"
+                "440765.790f989c"
             ]
         ]
     },
@@ -1753,44 +1715,20 @@
         "order": 4,
         "width": 0,
         "height": 0,
+        "wrap": false,
         "passthru": true,
         "topic": "",
+        "topicType": "str",
         "format": "{{value}}",
         "min": "15",
         "max": "23",
-        "step": "0.1",
+        "step": "0.5",
         "x": 228,
         "y": 735,
         "wires": [
             [
-                "24128108.cfb25e"
-            ]
-        ]
-    },
-    {
-        "id": "24128108.cfb25e",
-        "type": "ui_slider",
-        "z": "a3306a25.d81ac8",
-        "name": "",
-        "label": "T. manuale slider",
-        "tooltip": "",
-        "group": "24fb100a.8adb6",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "",
-        "min": "15",
-        "max": "23",
-        "step": "0.1",
-        "x": 426,
-        "y": 809,
-        "wires": [
-            [
-                "c47cc807.d6a328",
-                "920a0362.f094f",
-                "73da35a4.d3745c"
+                "73da35a4.d3745c",
+                "c47cc807.d6a328"
             ]
         ]
     },
@@ -2289,19 +2227,6 @@
         "wires": []
     },
     {
-        "id": "e44bfe17.72ff8",
-        "type": "mqtt out",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "topic": "CIR/setpoint/camera2",
-        "qos": "0",
-        "retain": "true",
-        "broker": "965f3d6f.d5282",
-        "x": 693,
-        "y": 716,
-        "wires": []
-    },
-    {
         "id": "def2babe.6fa298",
         "type": "ui_gauge",
         "z": "31446cab.0a54a4",
@@ -2616,59 +2541,6 @@
         "x": 1214,
         "y": 503,
         "wires": []
-    },
-    {
-        "id": "b213d5bb.122ab8",
-        "type": "ui_numeric",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "label": "T. manuale",
-        "tooltip": "",
-        "group": "4d55f947.57e0d8",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": true,
-        "topic": "",
-        "format": "{{value}}",
-        "min": "15",
-        "max": "23",
-        "step": "0.1",
-        "x": 203,
-        "y": 730,
-        "wires": [
-            [
-                "b342e82b.9dbbc8"
-            ]
-        ]
-    },
-    {
-        "id": "b342e82b.9dbbc8",
-        "type": "ui_slider",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "label": "T. manuale slider",
-        "tooltip": "",
-        "group": "4d55f947.57e0d8",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "",
-        "min": "15",
-        "max": "23",
-        "step": "0.1",
-        "x": 401,
-        "y": 804,
-        "wires": [
-            [
-                "def2babe.6fa298",
-                "e44bfe17.72ff8",
-                "b213d5bb.122ab8"
-            ]
-        ]
     },
     {
         "id": "b9b94572.173778",
@@ -3332,41 +3204,16 @@
         "wrap": false,
         "passthru": true,
         "topic": "",
+        "topicType": "str",
         "format": "{{value}}",
         "min": "15",
         "max": "23",
-        "step": "0.1",
+        "step": "0.5",
         "x": 203,
         "y": 730,
         "wires": [
             [
-                "9954150e.fe7398"
-            ]
-        ]
-    },
-    {
-        "id": "9954150e.fe7398",
-        "type": "ui_slider",
-        "z": "4c6b6b8f.28f984",
-        "name": "",
-        "label": "T. manuale slider",
-        "tooltip": "",
-        "group": "46340ca7.6bd7e4",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "end",
-        "topic": "",
-        "min": "15",
-        "max": "23",
-        "step": "0.1",
-        "x": 401,
-        "y": 804,
-        "wires": [
-            [
                 "72b6238d.0924ec",
-                "af2016f8.112488",
                 "82348f52.54f2a"
             ]
         ]
@@ -3570,11 +3417,10 @@
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
         "x": 130,
-        "y": 240,
+        "y": 320,
         "wires": [
             [
-                "61cde717.326d48",
-                "4445265f.fb2dd8"
+                "61cde717.326d48"
             ]
         ]
     },
@@ -3589,24 +3435,10 @@
         "initialize": "",
         "finalize": "",
         "x": 330,
-        "y": 240,
+        "y": 320,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "4445265f.fb2dd8",
-        "type": "debug",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 570,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "695ce1bb.8fcec",
@@ -4389,6 +4221,47 @@
         "name": "Error",
         "x": 1050,
         "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7a149fafb697b3e6",
+        "type": "ui_numeric",
+        "z": "31446cab.0a54a4",
+        "name": "",
+        "label": "T. manuale",
+        "tooltip": "",
+        "group": "4d55f947.57e0d8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "",
+        "topicType": "str",
+        "format": "{{value}}",
+        "min": "15",
+        "max": "23",
+        "step": "0.5",
+        "x": 190,
+        "y": 740,
+        "wires": [
+            [
+                "def2babe.6fa298",
+                "e44bfe17.72ff8"
+            ]
+        ]
+    },
+    {
+        "id": "e44bfe17.72ff8",
+        "type": "mqtt out",
+        "z": "31446cab.0a54a4",
+        "name": "",
+        "topic": "CIR/setpoint/camera2",
+        "qos": "0",
+        "retain": "true",
+        "broker": "965f3d6f.d5282",
+        "x": 693,
+        "y": 716,
         "wires": []
     }
 ]
