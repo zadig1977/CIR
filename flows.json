@@ -887,7 +887,7 @@
         "z": "37bf65d0.2750da",
         "name": "",
         "group": "3674120b.bce3be",
-        "order": 5,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -944,7 +944,7 @@
         "label": "setpoint auto sala",
         "tooltip": "",
         "group": "3674120b.bce3be",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -987,7 +987,7 @@
         "type": "ui_text",
         "z": "37bf65d0.2750da",
         "group": "3674120b.bce3be",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "Setpoint Sala Auto view",
@@ -1136,7 +1136,8 @@
         "y": 220,
         "wires": [
             [
-                "d758b8d1.90b8b8"
+                "d758b8d1.90b8b8",
+                "1fad55aabfafee55"
             ]
         ]
     },
@@ -1423,7 +1424,7 @@
         "z": "a3306a25.d81ac8",
         "name": "",
         "group": "24fb100a.8adb6",
-        "order": 6,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -1491,7 +1492,7 @@
         "type": "ui_text",
         "z": "a3306a25.d81ac8",
         "group": "24fb100a.8adb6",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "Setpoint camera1 Auto view",
@@ -1712,7 +1713,7 @@
         "label": "T. manuale",
         "tooltip": "",
         "group": "24fb100a.8adb6",
-        "order": 4,
+        "order": 3,
         "width": 0,
         "height": 0,
         "wrap": false,
@@ -2232,7 +2233,7 @@
         "z": "31446cab.0a54a4",
         "name": "",
         "group": "4d55f947.57e0d8",
-        "order": 6,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -2289,7 +2290,7 @@
         "label": "setpoint auto camera2",
         "tooltip": "",
         "group": "4d55f947.57e0d8",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -2332,7 +2333,7 @@
         "type": "ui_text",
         "z": "31446cab.0a54a4",
         "group": "4d55f947.57e0d8",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "Setpoint camera2 Auto view",
@@ -2880,7 +2881,7 @@
         "z": "4c6b6b8f.28f984",
         "name": "",
         "group": "46340ca7.6bd7e4",
-        "order": 6,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -2937,7 +2938,7 @@
         "label": "setpoint auto camera matrimoniale",
         "tooltip": "",
         "group": "46340ca7.6bd7e4",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -2980,7 +2981,7 @@
         "type": "ui_text",
         "z": "4c6b6b8f.28f984",
         "group": "46340ca7.6bd7e4",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "Setpoint camera mat Auto view",
@@ -3198,7 +3199,7 @@
         "label": "T. manuale",
         "tooltip": "",
         "group": "46340ca7.6bd7e4",
-        "order": 4,
+        "order": 3,
         "width": 0,
         "height": 0,
         "wrap": false,
@@ -3408,39 +3409,6 @@
         ]
     },
     {
-        "id": "b8373df2.0d521",
-        "type": "mqtt in",
-        "z": "37bf65d0.2750da",
-        "name": "Sensor temp filtered",
-        "topic": "CIR/sensor_temp_filtered/sala",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 130,
-        "y": 320,
-        "wires": [
-            [
-                "61cde717.326d48"
-            ]
-        ]
-    },
-    {
-        "id": "61cde717.326d48",
-        "type": "function",
-        "z": "37bf65d0.2750da",
-        "name": "topic temp",
-        "func": "var newMsg = { topic: \"Temp. sala filtrata\", payload: msg.payload };\nreturn newMsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 330,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "695ce1bb.8fcec",
         "type": "debug",
         "z": "a3306a25.d81ac8",
@@ -3462,7 +3430,7 @@
         "label": "setpoint auto camera1",
         "tooltip": "",
         "group": "24fb100a.8adb6",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4231,7 +4199,7 @@
         "label": "T. manuale",
         "tooltip": "",
         "group": "4d55f947.57e0d8",
-        "order": 4,
+        "order": 3,
         "width": 0,
         "height": 0,
         "wrap": false,
@@ -4263,5 +4231,24 @@
         "x": 693,
         "y": 716,
         "wires": []
+    },
+    {
+        "id": "1fad55aabfafee55",
+        "type": "smooth",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "property": "payload",
+        "action": "low",
+        "count": "30",
+        "round": "1",
+        "mult": "single",
+        "reduce": false,
+        "x": 480,
+        "y": 420,
+        "wires": [
+            [
+                "d758b8d1.90b8b8"
+            ]
+        ]
     }
 ]
