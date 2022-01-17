@@ -46,21 +46,27 @@
         "type": "mqtt-broker",
         "name": "galileo",
         "broker": "192.168.1.2",
-        "port": "1883",
+        "port": "1884",
         "clientid": "node1",
+        "autoConnect": true,
         "usetls": false,
         "compatmode": false,
+        "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
         "birthQos": "0",
         "birthPayload": "",
+        "birthMsg": {},
         "closeTopic": "",
         "closeQos": "0",
         "closePayload": "",
+        "closeMsg": {},
         "willTopic": "",
         "willQos": "0",
-        "willPayload": ""
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
     },
     {
         "id": "ccb6dfb0.9a224",
@@ -75,7 +81,7 @@
     {
         "id": "e6a59d78.b2002",
         "type": "ui_group",
-        "name": "Umidità",
+        "name": "Radiazione",
         "tab": "c9fa0e17.2e326",
         "order": 3,
         "disp": true,
@@ -421,7 +427,11 @@
         "name": "",
         "topic": "meteo/temp",
         "qos": "0",
+        "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
         "x": 178,
         "y": 83,
         "wires": [
@@ -471,6 +481,7 @@
         "topic": "meteo/humidity",
         "qos": "0",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 849,
         "y": 129,
         "wires": [
@@ -528,8 +539,8 @@
         "type": "ui_gauge",
         "z": "8632f2b8.e5292",
         "name": "",
-        "group": "e6a59d78.b2002",
-        "order": 2,
+        "group": "ccb6dfb0.9a224",
+        "order": 6,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -554,8 +565,8 @@
         "type": "ui_chart",
         "z": "8632f2b8.e5292",
         "name": "",
-        "group": "e6a59d78.b2002",
-        "order": 4,
+        "group": "ccb6dfb0.9a224",
+        "order": 7,
         "width": 0,
         "height": 0,
         "label": "Umidità",
@@ -666,17 +677,867 @@
         "wires": []
     },
     {
+        "id": "6feff44d.ea7cac",
+        "type": "mqtt in",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "topic": "meteo/wind_speed",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "aa839692.1d5ea8",
+                "e406cbc8.a6fe48",
+                "bea687ab.a4e388"
+            ]
+        ]
+    },
+    {
+        "id": "aa839692.1d5ea8",
+        "type": "debug",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 610,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e406cbc8.a6fe48",
+        "type": "ui_gauge",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "2e286b6d.be20a4",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Velocità vento",
+        "label": "m/s",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "25",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "10",
+        "seg2": "20",
+        "x": 620,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "bea687ab.a4e388",
+        "type": "ui_chart",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "2e286b6d.be20a4",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Velocità vento",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 620,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "371db2bb.9b5b1e",
+        "type": "debug",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1170,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "40f1dbf7.d4f4c4",
+        "type": "ui_gauge",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "2e286b6d.be20a4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-20",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "15",
+        "seg2": "28",
+        "x": 1170,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "7b9a8c19.7222d4",
+        "type": "ui_chart",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "2e286b6d.be20a4",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 1170,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "310731ef.5a6cae",
+        "type": "mqtt in",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "topic": "meteo/opentemp",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 880,
+        "y": 480,
+        "wires": [
+            [
+                "371db2bb.9b5b1e",
+                "7b9a8c19.7222d4",
+                "40f1dbf7.d4f4c4"
+            ]
+        ]
+    },
+    {
+        "id": "633a7de7.e815b4",
+        "type": "smooth",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "property": "payload",
+        "action": "max",
+        "count": "288",
+        "round": "",
+        "mult": "single",
+        "x": 382,
+        "y": 186,
+        "wires": [
+            [
+                "4d06bb36.657e94"
+            ]
+        ]
+    },
+    {
+        "id": "d0a19bfd.69f2a8",
+        "type": "smooth",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "property": "payload",
+        "action": "min",
+        "count": "288",
+        "round": "1",
+        "mult": "single",
+        "x": 379,
+        "y": 295,
+        "wires": [
+            [
+                "90371e1b.90a94"
+            ]
+        ]
+    },
+    {
+        "id": "46461e0e.5b30e",
+        "type": "smooth",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "288",
+        "round": "1",
+        "mult": "single",
+        "x": 380,
+        "y": 234,
+        "wires": [
+            [
+                "85a1aca8.1bed8"
+            ]
+        ]
+    },
+    {
+        "id": "80f466da8da3cf13",
+        "type": "mqtt in",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "topic": "meteo/opentemp",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 880,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6baed0f78d628039",
+        "type": "mqtt in",
+        "z": "8632f2b8.e5292",
+        "name": "weather ID",
+        "topic": "meteo/openid",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 200,
+        "y": 700,
+        "wires": [
+            [
+                "5bbfa8cdedb531bd"
+            ]
+        ]
+    },
+    {
+        "id": "5bbfa8cdedb531bd",
+        "type": "ui_text",
+        "z": "8632f2b8.e5292",
+        "group": "2e286b6d.be20a4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "ID",
+        "label": "Weather ID",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 540,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "7fb3e3b2f006bac7",
+        "type": "mqtt in",
+        "z": "8632f2b8.e5292",
+        "name": "radiation",
+        "topic": "meteo/radiation/globalsky",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 780,
+        "y": 700,
+        "wires": [
+            [
+                "cf03e992493ca497",
+                "64b5c9a6e68401de"
+            ]
+        ]
+    },
+    {
+        "id": "cf03e992493ca497",
+        "type": "ui_chart",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "e6a59d78.b2002",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Radiazione",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1050,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64b5c9a6e68401de",
+        "type": "ui_gauge",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "e6a59d78.b2002",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Radiazione",
+        "label": "W/m2",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "1200",
+        "colors": [
+            "#1589d1",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "200",
+        "seg2": "500",
+        "x": 1050,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "29d283c0.4e6e5c",
+        "type": "ui_gauge",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "ab78bae6.dac748",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura Sala",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "35",
+        "colors": [
+            "#0000ff",
+            "#00bf00",
+            "#ca3838"
+        ],
+        "seg1": "18",
+        "seg2": "23",
+        "x": 410,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "3bd4a181.3c786e",
+        "type": "ui_gauge",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "4469a851.913688",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura Camera Andrea",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "35",
+        "colors": [
+            "#0000ff",
+            "#00bf00",
+            "#ca3838"
+        ],
+        "seg1": "18",
+        "seg2": "23",
+        "x": 420,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1cb1dfd3.25421",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "links": [
+            "b45568f5.4e1bf8"
+        ],
+        "x": 195,
+        "y": 80,
+        "wires": [
+            [
+                "29d283c0.4e6e5c"
+            ]
+        ]
+    },
+    {
+        "id": "82cab67b.07dbe8",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "links": [
+            "25e50c9f.080154"
+        ],
+        "x": 185,
+        "y": 160,
+        "wires": [
+            [
+                "3bd4a181.3c786e"
+            ]
+        ]
+    },
+    {
+        "id": "43979795.1204b8",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "links": [
+            "6f30c2b7.575e5c"
+        ],
+        "x": 775,
+        "y": 160,
+        "wires": [
+            [
+                "8a295a27.9c1188"
+            ]
+        ]
+    },
+    {
+        "id": "809242e8.0741f",
+        "type": "ui_gauge",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "4469a851.913688",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura Camera Nicola",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "35",
+        "colors": [
+            "#0000ff",
+            "#00bf00",
+            "#ca3838"
+        ],
+        "seg1": "18",
+        "seg2": "23",
+        "x": 1000,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8a295a27.9c1188",
+        "type": "ui_gauge",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "ab78bae6.dac748",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura Camera Matrimoniale",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "35",
+        "colors": [
+            "#0000ff",
+            "#00bf00",
+            "#ca3838"
+        ],
+        "seg1": "18",
+        "seg2": "23",
+        "x": 1020,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1ff2b452.db2fcc",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "links": [
+            "f0143fb6.bc142"
+        ],
+        "x": 775,
+        "y": 80,
+        "wires": [
+            [
+                "809242e8.0741f"
+            ]
+        ]
+    },
+    {
+        "id": "46f247a1.bf8908",
+        "type": "mqtt in",
+        "z": "557d497a.18f0c8",
+        "name": "room on",
+        "topic": "CIR/diag/room_on/",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "2a526865.083b38",
+                "5b912c22.b25fb4"
+            ]
+        ]
+    },
+    {
+        "id": "2a526865.083b38",
+        "type": "debug",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5b912c22.b25fb4",
+        "type": "ui_chart",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "80696581.3750e8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Stanze accese",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 630,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb6bac9e946fc02e",
+        "type": "mqtt in",
+        "z": "557d497a.18f0c8",
+        "name": "test",
+        "topic": "shellies/shellyht-xxxxxx/sensor/temperature",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 210,
+        "y": 420,
+        "wires": [
+            [
+                "e47e0996d4f8386b"
+            ]
+        ]
+    },
+    {
+        "id": "e47e0996d4f8386b",
+        "type": "debug",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "4363a617253e2fa1",
+        "type": "mqtt out",
+        "z": "557d497a.18f0c8",
+        "name": "holiday",
+        "topic": "CIR/holiday/enable",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "965f3d6f.d5282",
+        "x": 640,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "7f6d36b73e10f36b",
+        "type": "ui_text_input",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "label": "orario di rientro",
+        "tooltip": "",
+        "group": "80696581.3750e8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "time",
+        "delay": "500",
+        "topic": "topic",
+        "topicType": "str",
+        "x": 260,
+        "y": 720,
+        "wires": [
+            [
+                "404338fd2813efb9"
+            ]
+        ]
+    },
+    {
+        "id": "404338fd2813efb9",
+        "type": "mqtt out",
+        "z": "557d497a.18f0c8",
+        "name": "orario holiday",
+        "topic": "CIR/holiday/orario",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "965f3d6f.d5282",
+        "x": 600,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "193cd5eaed350656",
+        "type": "mqtt in",
+        "z": "557d497a.18f0c8",
+        "name": "set holiday",
+        "topic": "CIR/holiday/set",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "2ae4f4f18e37a374",
+                "6f62b8d173b9c8e0"
+            ]
+        ]
+    },
+    {
+        "id": "2ae4f4f18e37a374",
+        "type": "debug",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "feff66ef99b49ea6",
+        "type": "ui_led",
+        "z": "557d497a.18f0c8",
+        "order": 1,
+        "group": "80696581.3750e8",
+        "width": 0,
+        "height": 0,
+        "label": "Abilitazione",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ffff00",
+                "value": "True",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "False",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "led abilitazione",
+        "x": 660,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "6f62b8d173b9c8e0",
+        "type": "ui_switch",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "label": "Abilitazione Gita",
+        "tooltip": "",
+        "group": "80696581.3750e8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "True",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "False",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "x": 460,
+        "y": 560,
+        "wires": [
+            [
+                "4363a617253e2fa1",
+                "feff66ef99b49ea6"
+            ]
+        ]
+    },
+    {
         "id": "ab8884d1.3326c8",
         "type": "mqtt in",
         "z": "37bf65d0.2750da",
         "name": "shelly_temp",
         "topic": "shellies/shellyht-58EB64/sensor/temperature",
-        "qos": "0",
+        "qos": "1",
+        "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
         "x": 127,
         "y": 42,
         "wires": [
-            []
+            [
+                "592713b8018b1ed7"
+            ]
         ]
     },
     {
@@ -757,6 +1618,7 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
         "x": 750,
         "y": 480,
         "wires": [
@@ -844,6 +1706,7 @@
         "topic": "shellies/shelly1-B97B5D/relay/0",
         "qos": "0",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 810,
         "y": 320,
         "wires": [
@@ -929,8 +1792,13 @@
         "z": "37bf65d0.2750da",
         "name": "",
         "topic": "",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 430,
         "y": 700,
@@ -1006,6 +1874,7 @@
         "topic": "CIR/setpoint/view/sala",
         "qos": "0",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 201,
         "y": 619,
         "wires": [
@@ -1022,6 +1891,7 @@
         "topic": "CIR/setpoint/pid/sala",
         "qos": "0",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 200,
         "y": 520,
         "wires": [
@@ -1149,6 +2019,7 @@
         "topic": "CIR/pid/sala",
         "qos": "0",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 859,
         "y": 733,
         "wires": [
@@ -1201,14 +2072,289 @@
         ]
     },
     {
+        "id": "f5f5ebfd.086e28",
+        "type": "mqtt in",
+        "z": "37bf65d0.2750da",
+        "name": "Sensor temp",
+        "topic": "CIR/sensor_temp/sala",
+        "qos": "0",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 123,
+        "y": 123,
+        "wires": [
+            [
+                "ffdceda3.ebc8e",
+                "40300229.88528c",
+                "4a158689.e57d78",
+                "b45568f5.4e1bf8"
+            ]
+        ]
+    },
+    {
+        "id": "b45568f5.4e1bf8",
+        "type": "link out",
+        "z": "37bf65d0.2750da",
+        "name": "temp sala",
+        "links": [
+            "1cb1dfd3.25421"
+        ],
+        "x": 445,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b125b7be.69ef68",
+        "type": "ui_chart",
+        "z": "37bf65d0.2750da",
+        "name": "Relè sala",
+        "group": "e4cfee7d.c9315",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "stato rele",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#ff8000",
+            "#00ffff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "x": 1141,
+        "y": 445,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3bb6dd00.dd3be4",
+        "type": "mqtt in",
+        "z": "37bf65d0.2750da",
+        "name": "Abilitazione sala",
+        "topic": "CIR/enable/raw/sala",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 820,
+        "y": 160,
+        "wires": [
+            [
+                "25a99663.e0005a",
+                "7e4de8ca.f9ef68",
+                "e02a5a47fe5ef56b"
+            ]
+        ]
+    },
+    {
+        "id": "25a99663.e0005a",
+        "type": "ui_switch",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "label": "Abilitazione",
+        "tooltip": "",
+        "group": "23795de0.4c4a2a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "CIR/enable/state/sala",
+        "style": "",
+        "onvalue": "True",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "False",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 1030,
+        "y": 160,
+        "wires": [
+            [
+                "36123396.2cc11c"
+            ]
+        ]
+    },
+    {
+        "id": "36123396.2cc11c",
+        "type": "mqtt out",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "topic": "",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "965f3d6f.d5282",
+        "x": 1210,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "2accb9f2.f7cbf6",
+        "type": "mqtt in",
+        "z": "37bf65d0.2750da",
+        "name": "Diag sala",
+        "topic": "CIR/diag/sala",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 800,
+        "y": 80,
+        "wires": [
+            [
+                "3983e2b3.4209ee"
+            ]
+        ]
+    },
+    {
+        "id": "3983e2b3.4209ee",
+        "type": "ui_led",
+        "z": "37bf65d0.2750da",
+        "order": 3,
+        "group": "23795de0.4c4a2a",
+        "width": 0,
+        "height": 0,
+        "label": "Diagnosi",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "str"
+            },
+            {
+                "color": "#49e449",
+                "value": "true",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Error",
+        "x": 990,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7e4de8ca.f9ef68",
+        "type": "ui_led",
+        "z": "37bf65d0.2750da",
+        "order": 1,
+        "group": "23795de0.4c4a2a",
+        "width": 0,
+        "height": 0,
+        "label": "Attivazione",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "False",
+                "valueType": "str"
+            },
+            {
+                "color": "#49e449",
+                "value": "True",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "abilitazione led",
+        "x": 1040,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1fad55aabfafee55",
+        "type": "smooth",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "property": "payload",
+        "action": "low",
+        "count": "10",
+        "round": "1",
+        "mult": "single",
+        "reduce": false,
+        "x": 480,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "592713b8018b1ed7",
+        "type": "debug",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "e02a5a47fe5ef56b",
+        "type": "debug",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 100,
+        "wires": []
+    },
+    {
         "id": "239523e6.2e274c",
         "type": "mqtt in",
         "z": "a3306a25.d81ac8",
         "name": "shelly_temp",
         "topic": "shellies/shellyht-9555B7/sensor/temperature",
-        "qos": "0",
+        "qos": "1",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
         "x": 155,
         "y": 45,
         "wires": [
@@ -1326,8 +2472,13 @@
         "z": "a3306a25.d81ac8",
         "name": "rele",
         "topic": "",
-        "qos": "0",
+        "qos": "1",
         "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 1184,
         "y": 677,
@@ -1381,6 +2532,7 @@
         "topic": "shellies/shelly1-764C37/relay/0",
         "qos": "0",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 880,
         "y": 360,
         "wires": [
@@ -1411,8 +2563,13 @@
         "z": "a3306a25.d81ac8",
         "name": "",
         "topic": "CIR/setpoint/studio",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 708,
         "y": 721,
@@ -1466,8 +2623,13 @@
         "z": "a3306a25.d81ac8",
         "name": "",
         "topic": "",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 499,
         "y": 503,
@@ -1512,6 +2674,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 243,
         "y": 380,
         "wires": [
@@ -1529,6 +2692,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 218,
         "y": 294,
         "wires": [
@@ -1682,6 +2846,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 933,
         "y": 553,
         "wires": [
@@ -1756,6 +2921,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 144,
         "y": 129,
         "wires": [
@@ -1764,206 +2930,6 @@
                 "e969e8b5.eded78",
                 "c2cc46c8.57b6e8",
                 "f0143fb6.bc142"
-            ]
-        ]
-    },
-    {
-        "id": "f5f5ebfd.086e28",
-        "type": "mqtt in",
-        "z": "37bf65d0.2750da",
-        "name": "Sensor temp",
-        "topic": "CIR/sensor_temp/sala",
-        "qos": "0",
-        "broker": "965f3d6f.d5282",
-        "x": 123,
-        "y": 123,
-        "wires": [
-            [
-                "ffdceda3.ebc8e",
-                "40300229.88528c",
-                "4a158689.e57d78",
-                "b45568f5.4e1bf8"
-            ]
-        ]
-    },
-    {
-        "id": "6feff44d.ea7cac",
-        "type": "mqtt in",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "topic": "meteo/wind_speed",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 230,
-        "y": 460,
-        "wires": [
-            [
-                "aa839692.1d5ea8",
-                "e406cbc8.a6fe48",
-                "bea687ab.a4e388"
-            ]
-        ]
-    },
-    {
-        "id": "aa839692.1d5ea8",
-        "type": "debug",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 610,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "e406cbc8.a6fe48",
-        "type": "ui_gauge",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "group": "2e286b6d.be20a4",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Velocità vento",
-        "label": "m/s",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "25",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "10",
-        "seg2": "20",
-        "x": 620,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "bea687ab.a4e388",
-        "type": "ui_chart",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "group": "2e286b6d.be20a4",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "Velocità vento",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "604800",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 620,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "29d283c0.4e6e5c",
-        "type": "ui_gauge",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "group": "ab78bae6.dac748",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Temperatura Sala",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "10",
-        "max": "35",
-        "colors": [
-            "#0000ff",
-            "#00bf00",
-            "#ca3838"
-        ],
-        "seg1": "18",
-        "seg2": "23",
-        "x": 410,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "3bd4a181.3c786e",
-        "type": "ui_gauge",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "group": "4469a851.913688",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Temperatura Camera Andrea",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "10",
-        "max": "35",
-        "colors": [
-            "#0000ff",
-            "#00bf00",
-            "#ca3838"
-        ],
-        "seg1": "18",
-        "seg2": "23",
-        "x": 420,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "b45568f5.4e1bf8",
-        "type": "link out",
-        "z": "37bf65d0.2750da",
-        "name": "temp sala",
-        "links": [
-            "1cb1dfd3.25421"
-        ],
-        "x": 445,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "1cb1dfd3.25421",
-        "type": "link in",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "links": [
-            "b45568f5.4e1bf8"
-        ],
-        "x": 195,
-        "y": 80,
-        "wires": [
-            [
-                "29d283c0.4e6e5c"
             ]
         ]
     },
@@ -1980,20 +2946,198 @@
         "wires": []
     },
     {
-        "id": "82cab67b.07dbe8",
-        "type": "link in",
-        "z": "557d497a.18f0c8",
+        "id": "695ce1bb.8fcec",
+        "type": "debug",
+        "z": "a3306a25.d81ac8",
         "name": "",
-        "links": [
-            "25e50c9f.080154"
-        ],
-        "x": 185,
-        "y": 160,
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 330,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5b8cca39.b5d9a4",
+        "type": "ui_switch",
+        "z": "a3306a25.d81ac8",
+        "name": "",
+        "label": "setpoint auto camera1",
+        "tooltip": "",
+        "group": "24fb100a.8adb6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "CIR/setpoint/mode/studio",
+        "style": "",
+        "onvalue": "auto",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "manuale",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 240,
+        "y": 560,
         "wires": [
             [
-                "3bd4a181.3c786e"
+                "80c0d66.1d33328",
+                "aa71b43.d404148"
             ]
         ]
+    },
+    {
+        "id": "bb8ae277.60a18",
+        "type": "mqtt in",
+        "z": "a3306a25.d81ac8",
+        "name": "Diag studio",
+        "topic": "CIR/diag/studio",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 860,
+        "y": 60,
+        "wires": [
+            [
+                "99e2f90c4e6c2391"
+            ]
+        ]
+    },
+    {
+        "id": "35b7b9c4.fb4816",
+        "type": "mqtt in",
+        "z": "a3306a25.d81ac8",
+        "name": "Abilitazione studio",
+        "topic": "CIR/enable/raw/studio",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 890,
+        "y": 140,
+        "wires": [
+            [
+                "3771d938.6e1246",
+                "65781d872365a2e7"
+            ]
+        ]
+    },
+    {
+        "id": "3771d938.6e1246",
+        "type": "ui_switch",
+        "z": "a3306a25.d81ac8",
+        "name": "",
+        "label": "Abilitazione",
+        "tooltip": "",
+        "group": "e6fa4a1e.0ac0e",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "true",
+        "topic": "CIR/enable/state/studio",
+        "style": "",
+        "onvalue": "True",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "False",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 1110,
+        "y": 140,
+        "wires": [
+            [
+                "d224020.bb20c"
+            ]
+        ]
+    },
+    {
+        "id": "d224020.bb20c",
+        "type": "mqtt out",
+        "z": "a3306a25.d81ac8",
+        "name": "",
+        "topic": "",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "965f3d6f.d5282",
+        "x": 1270,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "65781d872365a2e7",
+        "type": "ui_led",
+        "z": "a3306a25.d81ac8",
+        "order": 1,
+        "group": "e6fa4a1e.0ac0e",
+        "width": 0,
+        "height": 0,
+        "label": "Attivazione",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "False",
+                "valueType": "str"
+            },
+            {
+                "color": "#49e449",
+                "value": "True",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "abilitazione led",
+        "x": 1120,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "99e2f90c4e6c2391",
+        "type": "ui_led",
+        "z": "a3306a25.d81ac8",
+        "order": 3,
+        "group": "e6fa4a1e.0ac0e",
+        "width": 0,
+        "height": 0,
+        "label": "Diagnosi",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "str"
+            },
+            {
+                "color": "#49e449",
+                "value": "true",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Error",
+        "x": 1050,
+        "y": 60,
+        "wires": []
     },
     {
         "id": "8a089b16.24a518",
@@ -2001,9 +3145,12 @@
         "z": "31446cab.0a54a4",
         "name": "shelly_temp",
         "topic": "shellies/shelly1-E09806952AC7/ext_temperature/0",
-        "qos": "0",
+        "qos": "1",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
         "x": 130,
         "y": 40,
         "wires": [
@@ -2203,6 +3350,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 900,
         "y": 300,
         "wires": [
@@ -2275,8 +3423,13 @@
         "z": "31446cab.0a54a4",
         "name": "",
         "topic": "",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 474,
         "y": 498,
@@ -2353,6 +3506,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 218,
         "y": 375,
         "wires": [
@@ -2370,6 +3524,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 193,
         "y": 289,
         "wires": [
@@ -2520,6 +3675,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 953,
         "y": 493,
         "wires": [
@@ -2566,6 +3722,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 119,
         "y": 124,
         "wires": [
@@ -2591,45 +3748,197 @@
         "wires": []
     },
     {
-        "id": "43979795.1204b8",
-        "type": "link in",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "links": [
-            "6f30c2b7.575e5c"
-        ],
-        "x": 775,
-        "y": 160,
+        "id": "e62b7ac8.d04898",
+        "type": "mqtt in",
+        "z": "31446cab.0a54a4",
+        "name": "Diag camera2",
+        "topic": "CIR/diag/camera2",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 870,
+        "y": 60,
         "wires": [
             [
-                "8a295a27.9c1188"
+                "fb9a00f41ed58381"
             ]
         ]
     },
     {
-        "id": "809242e8.0741f",
-        "type": "ui_gauge",
-        "z": "557d497a.18f0c8",
+        "id": "1ca7d264.4b1a3e",
+        "type": "mqtt in",
+        "z": "31446cab.0a54a4",
+        "name": "Abilitazione camera2",
+        "topic": "CIR/enable/raw/camera2",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "inputs": 0,
+        "x": 890,
+        "y": 140,
+        "wires": [
+            [
+                "30114d23.75ffc2",
+                "c66623a057dcd30f"
+            ]
+        ]
+    },
+    {
+        "id": "30114d23.75ffc2",
+        "type": "ui_switch",
+        "z": "31446cab.0a54a4",
         "name": "",
-        "group": "4469a851.913688",
+        "label": "Abilitazione",
+        "tooltip": "",
+        "group": "4002d468.7f34c4",
         "order": 2,
         "width": 0,
         "height": 0,
-        "gtype": "gage",
-        "title": "Temperatura Camera Nicola",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "10",
-        "max": "35",
-        "colors": [
-            "#0000ff",
-            "#00bf00",
-            "#ca3838"
+        "passthru": false,
+        "decouple": "true",
+        "topic": "CIR/enable/state/camera2",
+        "style": "",
+        "onvalue": "True",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "False",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 1090,
+        "y": 200,
+        "wires": [
+            [
+                "65880c93.1782f4"
+            ]
+        ]
+    },
+    {
+        "id": "65880c93.1782f4",
+        "type": "mqtt out",
+        "z": "31446cab.0a54a4",
+        "name": "",
+        "topic": "",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "965f3d6f.d5282",
+        "x": 1270,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "c66623a057dcd30f",
+        "type": "ui_led",
+        "z": "31446cab.0a54a4",
+        "order": 1,
+        "group": "4002d468.7f34c4",
+        "width": 0,
+        "height": 0,
+        "label": "Attivazione",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "False",
+                "valueType": "str"
+            },
+            {
+                "color": "#49e449",
+                "value": "True",
+                "valueType": "str"
+            }
         ],
-        "seg1": "18",
-        "seg2": "23",
-        "x": 1000,
-        "y": 80,
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "abilitazione led",
+        "x": 1120,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fb9a00f41ed58381",
+        "type": "ui_led",
+        "z": "31446cab.0a54a4",
+        "order": 3,
+        "group": "4002d468.7f34c4",
+        "width": 0,
+        "height": 0,
+        "label": "Diagnosi",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "str"
+            },
+            {
+                "color": "#49e449",
+                "value": "true",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Error",
+        "x": 1050,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7a149fafb697b3e6",
+        "type": "ui_numeric",
+        "z": "31446cab.0a54a4",
+        "name": "",
+        "label": "T. manuale",
+        "tooltip": "",
+        "group": "4d55f947.57e0d8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "",
+        "topicType": "str",
+        "format": "{{value}}",
+        "min": "15",
+        "max": "23",
+        "step": "0.5",
+        "x": 190,
+        "y": 740,
+        "wires": [
+            [
+                "def2babe.6fa298",
+                "e44bfe17.72ff8"
+            ]
+        ]
+    },
+    {
+        "id": "e44bfe17.72ff8",
+        "type": "mqtt out",
+        "z": "31446cab.0a54a4",
+        "name": "",
+        "topic": "CIR/setpoint/camera2",
+        "qos": "1",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "965f3d6f.d5282",
+        "x": 693,
+        "y": 716,
         "wires": []
     },
     {
@@ -2638,9 +3947,12 @@
         "z": "4c6b6b8f.28f984",
         "name": "shelly_temp",
         "topic": "shellies/shellyht-95705B/sensor/temperature",
-        "qos": "0",
+        "qos": "1",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
         "x": 130,
         "y": 40,
         "wires": [
@@ -2838,6 +4150,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 880,
         "y": 360,
         "wires": [
@@ -2868,8 +4181,13 @@
         "z": "4c6b6b8f.28f984",
         "name": "",
         "topic": "CIR/setpoint/camera_mat",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 703,
         "y": 716,
@@ -2923,8 +4241,13 @@
         "z": "4c6b6b8f.28f984",
         "name": "",
         "topic": "",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 475,
         "y": 507,
@@ -3001,6 +4324,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 219,
         "y": 384,
         "wires": [
@@ -3018,6 +4342,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 194,
         "y": 298,
         "wires": [
@@ -3168,6 +4493,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 933,
         "y": 553,
         "wires": [
@@ -3242,6 +4568,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 120,
         "y": 133,
         "wires": [
@@ -3266,289 +4593,6 @@
         "wires": []
     },
     {
-        "id": "8a295a27.9c1188",
-        "type": "ui_gauge",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "group": "ab78bae6.dac748",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Temperatura Camera Matrimoniale",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "10",
-        "max": "35",
-        "colors": [
-            "#0000ff",
-            "#00bf00",
-            "#ca3838"
-        ],
-        "seg1": "18",
-        "seg2": "23",
-        "x": 1020,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "1ff2b452.db2fcc",
-        "type": "link in",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "links": [
-            "f0143fb6.bc142"
-        ],
-        "x": 775,
-        "y": 80,
-        "wires": [
-            [
-                "809242e8.0741f"
-            ]
-        ]
-    },
-    {
-        "id": "371db2bb.9b5b1e",
-        "type": "debug",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 1170,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "40f1dbf7.d4f4c4",
-        "type": "ui_gauge",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "group": "2e286b6d.be20a4",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Temperatura",
-        "label": "°C",
-        "format": "{{value}}",
-        "min": "-20",
-        "max": "45",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "15",
-        "seg2": "28",
-        "x": 1170,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "7b9a8c19.7222d4",
-        "type": "ui_chart",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "group": "2e286b6d.be20a4",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Temperatura",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "604800",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 1170,
-        "y": 480,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "310731ef.5a6cae",
-        "type": "mqtt in",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "topic": "meteo/opentemp",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 880,
-        "y": 480,
-        "wires": [
-            [
-                "371db2bb.9b5b1e",
-                "7b9a8c19.7222d4",
-                "40f1dbf7.d4f4c4"
-            ]
-        ]
-    },
-    {
-        "id": "695ce1bb.8fcec",
-        "type": "debug",
-        "z": "a3306a25.d81ac8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 330,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "5b8cca39.b5d9a4",
-        "type": "ui_switch",
-        "z": "a3306a25.d81ac8",
-        "name": "",
-        "label": "setpoint auto camera1",
-        "tooltip": "",
-        "group": "24fb100a.8adb6",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "CIR/setpoint/mode/studio",
-        "style": "",
-        "onvalue": "auto",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "manuale",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 240,
-        "y": 560,
-        "wires": [
-            [
-                "80c0d66.1d33328",
-                "aa71b43.d404148"
-            ]
-        ]
-    },
-    {
-        "id": "b125b7be.69ef68",
-        "type": "ui_chart",
-        "z": "37bf65d0.2750da",
-        "name": "Relè sala",
-        "group": "e4cfee7d.c9315",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "label": "stato rele",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "dd HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#ff8000",
-            "#00ffff",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "x": 1141,
-        "y": 445,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3bb6dd00.dd3be4",
-        "type": "mqtt in",
-        "z": "37bf65d0.2750da",
-        "name": "Abilitazione sala",
-        "topic": "CIR/enable/raw/sala",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 820,
-        "y": 160,
-        "wires": [
-            [
-                "25a99663.e0005a",
-                "7e4de8ca.f9ef68"
-            ]
-        ]
-    },
-    {
-        "id": "bb8ae277.60a18",
-        "type": "mqtt in",
-        "z": "a3306a25.d81ac8",
-        "name": "Diag studio",
-        "topic": "CIR/diag/studio",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 860,
-        "y": 60,
-        "wires": [
-            [
-                "99e2f90c4e6c2391"
-            ]
-        ]
-    },
-    {
-        "id": "e62b7ac8.d04898",
-        "type": "mqtt in",
-        "z": "31446cab.0a54a4",
-        "name": "Diag camera2",
-        "topic": "CIR/diag/camera2",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 870,
-        "y": 60,
-        "wires": [
-            [
-                "fb9a00f41ed58381"
-            ]
-        ]
-    },
-    {
         "id": "3c0d4ca.89b5334",
         "type": "mqtt in",
         "z": "4c6b6b8f.28f984",
@@ -3557,6 +4601,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 840,
         "y": 60,
         "wires": [
@@ -3564,191 +4609,6 @@
                 "00380937ff2633fa"
             ]
         ]
-    },
-    {
-        "id": "25a99663.e0005a",
-        "type": "ui_switch",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "label": "Abilitazione",
-        "tooltip": "",
-        "group": "23795de0.4c4a2a",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "decouple": "true",
-        "topic": "CIR/enable/state/sala",
-        "style": "",
-        "onvalue": "True",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "False",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 1030,
-        "y": 160,
-        "wires": [
-            [
-                "36123396.2cc11c"
-            ]
-        ]
-    },
-    {
-        "id": "36123396.2cc11c",
-        "type": "mqtt out",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "topic": "",
-        "qos": "0",
-        "retain": "true",
-        "broker": "965f3d6f.d5282",
-        "x": 1210,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "2accb9f2.f7cbf6",
-        "type": "mqtt in",
-        "z": "37bf65d0.2750da",
-        "name": "Diag sala",
-        "topic": "CIR/diag/sala",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 800,
-        "y": 80,
-        "wires": [
-            [
-                "3983e2b3.4209ee"
-            ]
-        ]
-    },
-    {
-        "id": "35b7b9c4.fb4816",
-        "type": "mqtt in",
-        "z": "a3306a25.d81ac8",
-        "name": "Abilitazione studio",
-        "topic": "CIR/enable/raw/studio",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 890,
-        "y": 140,
-        "wires": [
-            [
-                "3771d938.6e1246",
-                "65781d872365a2e7"
-            ]
-        ]
-    },
-    {
-        "id": "3771d938.6e1246",
-        "type": "ui_switch",
-        "z": "a3306a25.d81ac8",
-        "name": "",
-        "label": "Abilitazione",
-        "tooltip": "",
-        "group": "e6fa4a1e.0ac0e",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "decouple": "true",
-        "topic": "CIR/enable/state/studio",
-        "style": "",
-        "onvalue": "True",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "False",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 1110,
-        "y": 140,
-        "wires": [
-            [
-                "d224020.bb20c"
-            ]
-        ]
-    },
-    {
-        "id": "d224020.bb20c",
-        "type": "mqtt out",
-        "z": "a3306a25.d81ac8",
-        "name": "",
-        "topic": "",
-        "qos": "0",
-        "retain": "true",
-        "broker": "965f3d6f.d5282",
-        "x": 1270,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "1ca7d264.4b1a3e",
-        "type": "mqtt in",
-        "z": "31446cab.0a54a4",
-        "name": "Abilitazione camera2",
-        "topic": "CIR/enable/raw/camera2",
-        "qos": "0",
-        "datatype": "auto",
-        "broker": "965f3d6f.d5282",
-        "x": 890,
-        "y": 140,
-        "wires": [
-            [
-                "30114d23.75ffc2",
-                "c66623a057dcd30f"
-            ]
-        ]
-    },
-    {
-        "id": "30114d23.75ffc2",
-        "type": "ui_switch",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "label": "Abilitazione",
-        "tooltip": "",
-        "group": "4002d468.7f34c4",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "decouple": "true",
-        "topic": "CIR/enable/state/camera2",
-        "style": "",
-        "onvalue": "True",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "False",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 1090,
-        "y": 200,
-        "wires": [
-            [
-                "65880c93.1782f4"
-            ]
-        ]
-    },
-    {
-        "id": "65880c93.1782f4",
-        "type": "mqtt out",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "topic": "",
-        "qos": "0",
-        "retain": "true",
-        "broker": "965f3d6f.d5282",
-        "x": 1270,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "d3bfea88.5553b8",
@@ -3759,6 +4619,7 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "inputs": 0,
         "x": 870,
         "y": 140,
         "wires": [
@@ -3805,266 +4666,16 @@
         "z": "4c6b6b8f.28f984",
         "name": "",
         "topic": "",
-        "qos": "0",
+        "qos": "1",
         "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "965f3d6f.d5282",
         "x": 1290,
         "y": 220,
-        "wires": []
-    },
-    {
-        "id": "46f247a1.bf8908",
-        "type": "mqtt in",
-        "z": "557d497a.18f0c8",
-        "name": "room on",
-        "topic": "CIR/diag/room_on/",
-        "qos": "0",
-        "datatype": "utf8",
-        "broker": "965f3d6f.d5282",
-        "x": 280,
-        "y": 340,
-        "wires": [
-            [
-                "2a526865.083b38",
-                "5b912c22.b25fb4"
-            ]
-        ]
-    },
-    {
-        "id": "2a526865.083b38",
-        "type": "debug",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 650,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "5b912c22.b25fb4",
-        "type": "ui_chart",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "group": "80696581.3750e8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Stanze accese",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 690,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "633a7de7.e815b4",
-        "type": "smooth",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "property": "payload",
-        "action": "max",
-        "count": "288",
-        "round": "",
-        "mult": "single",
-        "x": 382,
-        "y": 186,
-        "wires": [
-            [
-                "4d06bb36.657e94"
-            ]
-        ]
-    },
-    {
-        "id": "d0a19bfd.69f2a8",
-        "type": "smooth",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "property": "payload",
-        "action": "min",
-        "count": "288",
-        "round": "1",
-        "mult": "single",
-        "x": 379,
-        "y": 295,
-        "wires": [
-            [
-                "90371e1b.90a94"
-            ]
-        ]
-    },
-    {
-        "id": "46461e0e.5b30e",
-        "type": "smooth",
-        "z": "8632f2b8.e5292",
-        "name": "",
-        "property": "payload",
-        "action": "mean",
-        "count": "288",
-        "round": "1",
-        "mult": "single",
-        "x": 380,
-        "y": 234,
-        "wires": [
-            [
-                "85a1aca8.1bed8"
-            ]
-        ]
-    },
-    {
-        "id": "3983e2b3.4209ee",
-        "type": "ui_led",
-        "z": "37bf65d0.2750da",
-        "order": 3,
-        "group": "23795de0.4c4a2a",
-        "width": 0,
-        "height": 0,
-        "label": "Diagnosi",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "str"
-            },
-            {
-                "color": "#49e449",
-                "value": "true",
-                "valueType": "str"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "square",
-        "showGlow": true,
-        "name": "Error",
-        "x": 990,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "7e4de8ca.f9ef68",
-        "type": "ui_led",
-        "z": "37bf65d0.2750da",
-        "order": 1,
-        "group": "23795de0.4c4a2a",
-        "width": 0,
-        "height": 0,
-        "label": "Attivazione",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "False",
-                "valueType": "str"
-            },
-            {
-                "color": "#49e449",
-                "value": "True",
-                "valueType": "str"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "square",
-        "showGlow": true,
-        "name": "abilitazione led",
-        "x": 1040,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "65781d872365a2e7",
-        "type": "ui_led",
-        "z": "a3306a25.d81ac8",
-        "order": 1,
-        "group": "e6fa4a1e.0ac0e",
-        "width": 0,
-        "height": 0,
-        "label": "Attivazione",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "False",
-                "valueType": "str"
-            },
-            {
-                "color": "#49e449",
-                "value": "True",
-                "valueType": "str"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "square",
-        "showGlow": true,
-        "name": "abilitazione led",
-        "x": 1120,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "99e2f90c4e6c2391",
-        "type": "ui_led",
-        "z": "a3306a25.d81ac8",
-        "order": 3,
-        "group": "e6fa4a1e.0ac0e",
-        "width": 0,
-        "height": 0,
-        "label": "Diagnosi",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "str"
-            },
-            {
-                "color": "#49e449",
-                "value": "true",
-                "valueType": "str"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "square",
-        "showGlow": true,
-        "name": "Error",
-        "x": 1050,
-        "y": 60,
         "wires": []
     },
     {
@@ -4099,37 +4710,6 @@
         "wires": []
     },
     {
-        "id": "c66623a057dcd30f",
-        "type": "ui_led",
-        "z": "31446cab.0a54a4",
-        "order": 1,
-        "group": "4002d468.7f34c4",
-        "width": 0,
-        "height": 0,
-        "label": "Attivazione",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "False",
-                "valueType": "str"
-            },
-            {
-                "color": "#49e449",
-                "value": "True",
-                "valueType": "str"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "square",
-        "showGlow": true,
-        "name": "abilitazione led",
-        "x": 1120,
-        "y": 140,
-        "wires": []
-    },
-    {
         "id": "c249ea84c37c019a",
         "type": "ui_led",
         "z": "4c6b6b8f.28f984",
@@ -4159,96 +4739,5 @@
         "x": 1120,
         "y": 140,
         "wires": []
-    },
-    {
-        "id": "fb9a00f41ed58381",
-        "type": "ui_led",
-        "z": "31446cab.0a54a4",
-        "order": 3,
-        "group": "4002d468.7f34c4",
-        "width": 0,
-        "height": 0,
-        "label": "Diagnosi",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "str"
-            },
-            {
-                "color": "#49e449",
-                "value": "true",
-                "valueType": "str"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "square",
-        "showGlow": true,
-        "name": "Error",
-        "x": 1050,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "7a149fafb697b3e6",
-        "type": "ui_numeric",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "label": "T. manuale",
-        "tooltip": "",
-        "group": "4d55f947.57e0d8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "wrap": false,
-        "passthru": true,
-        "topic": "",
-        "topicType": "str",
-        "format": "{{value}}",
-        "min": "15",
-        "max": "23",
-        "step": "0.5",
-        "x": 190,
-        "y": 740,
-        "wires": [
-            [
-                "def2babe.6fa298",
-                "e44bfe17.72ff8"
-            ]
-        ]
-    },
-    {
-        "id": "e44bfe17.72ff8",
-        "type": "mqtt out",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "topic": "CIR/setpoint/camera2",
-        "qos": "0",
-        "retain": "true",
-        "broker": "965f3d6f.d5282",
-        "x": 693,
-        "y": 716,
-        "wires": []
-    },
-    {
-        "id": "1fad55aabfafee55",
-        "type": "smooth",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "property": "payload",
-        "action": "low",
-        "count": "30",
-        "round": "1",
-        "mult": "single",
-        "reduce": false,
-        "x": 480,
-        "y": 420,
-        "wires": [
-            [
-                "d758b8d1.90b8b8"
-            ]
-        ]
     }
 ]
