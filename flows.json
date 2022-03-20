@@ -71,9 +71,9 @@
     {
         "id": "ccb6dfb0.9a224",
         "type": "ui_group",
-        "name": "Temperatura",
+        "name": "Temperatura Sud",
         "tab": "c9fa0e17.2e326",
-        "order": 2,
+        "order": 1,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -81,9 +81,9 @@
     {
         "id": "e6a59d78.b2002",
         "type": "ui_group",
-        "name": "Radiazione",
-        "tab": "c9fa0e17.2e326",
-        "order": 3,
+        "name": "Irraggiamento",
+        "tab": "72da9230b326deed",
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false
@@ -91,7 +91,7 @@
     {
         "id": "c9fa0e17.2e326",
         "type": "ui_tab",
-        "name": "Meteo",
+        "name": "Temperatura",
         "icon": "dashboard",
         "order": 1,
         "disabled": false,
@@ -201,7 +201,7 @@
         "type": "ui_tab",
         "name": "Sala",
         "icon": "dashboard",
-        "order": 3,
+        "order": 4,
         "disabled": false,
         "hidden": false
     },
@@ -239,7 +239,7 @@
         "type": "ui_tab",
         "name": "Camera Nicola",
         "icon": "dashboard",
-        "order": 4,
+        "order": 5,
         "disabled": false,
         "hidden": false
     },
@@ -277,7 +277,7 @@
         "id": "2e286b6d.be20a4",
         "type": "ui_group",
         "name": "Opendata",
-        "tab": "c9fa0e17.2e326",
+        "tab": "72da9230b326deed",
         "order": 3,
         "disp": true,
         "width": "6",
@@ -288,7 +288,7 @@
         "type": "ui_tab",
         "name": "Overview",
         "icon": "dashboard",
-        "order": 2,
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -307,7 +307,7 @@
         "type": "ui_tab",
         "name": "Camera Andrea",
         "icon": "dashboard",
-        "order": 5,
+        "order": 6,
         "disabled": false,
         "hidden": false
     },
@@ -336,7 +336,7 @@
         "type": "ui_tab",
         "name": "Camera Matrimoniale",
         "icon": "dashboard",
-        "order": 6,
+        "order": 7,
         "disabled": false,
         "hidden": false
     },
@@ -421,6 +421,25 @@
         "collapse": false
     },
     {
+        "id": "93fc500b0ee1249a",
+        "type": "ui_group",
+        "name": "Temperatura Nord",
+        "tab": "c9fa0e17.2e326",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "72da9230b326deed",
+        "type": "ui_tab",
+        "name": "Meteo",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "695b357f.6a8b4c",
         "type": "mqtt in",
         "z": "8632f2b8.e5292",
@@ -501,7 +520,7 @@
         "order": 5,
         "width": 0,
         "height": 0,
-        "label": "Temperatura",
+        "label": "Temperatura Sud",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -528,7 +547,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 612,
+        "useDifferentColor": false,
+        "x": 632,
         "y": 81,
         "wires": [
             []
@@ -612,7 +632,7 @@
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Temperatura",
+        "title": "Temperatura Sud",
         "label": "°C",
         "format": "{{value}}",
         "min": "-10",
@@ -624,7 +644,7 @@
         ],
         "seg1": "15",
         "seg2": "28",
-        "x": 615,
+        "x": 635,
         "y": 130,
         "wires": []
     },
@@ -1016,7 +1036,7 @@
         "order": 3,
         "width": 0,
         "height": 0,
-        "label": "Radiazione",
+        "label": "Irraggiamento",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -1044,7 +1064,7 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
-        "x": 1050,
+        "x": 1060,
         "y": 700,
         "wires": [
             []
@@ -1060,7 +1080,7 @@
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Radiazione",
+        "title": "Irraggiamento",
         "label": "W/m2",
         "format": "{{value}}",
         "min": "0",
@@ -1072,9 +1092,204 @@
         ],
         "seg1": "200",
         "seg2": "500",
-        "x": 1050,
+        "x": 1060,
         "y": 640,
         "wires": []
+    },
+    {
+        "id": "3dee62b1e383c30a",
+        "type": "mqtt in",
+        "z": "8632f2b8.e5292",
+        "name": "Ext_temp",
+        "topic": "shellies/shelly1-ext-temp/ext_temperature/0",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 200,
+        "y": 820,
+        "wires": [
+            [
+                "1fba7e406bfa91c2",
+                "615e7894bab27a14",
+                "598ebfdd608b1ec4",
+                "c4f4326cb5b2a7be",
+                "342b3156a171d5e9"
+            ]
+        ]
+    },
+    {
+        "id": "615e7894bab27a14",
+        "type": "ui_gauge",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "93fc500b0ee1249a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura Nord",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-10",
+        "max": "50",
+        "colors": [
+            "#0080ff",
+            "#008000",
+            "#ca3838"
+        ],
+        "seg1": "15",
+        "seg2": "28",
+        "x": 670,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "1fba7e406bfa91c2",
+        "type": "ui_chart",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "93fc500b0ee1249a",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura Nord",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 670,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a21cd40902cd14cb",
+        "type": "ui_text",
+        "z": "8632f2b8.e5292",
+        "group": "93fc500b0ee1249a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Max Temperatura",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 670,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "043e0fae1a059a93",
+        "type": "ui_text",
+        "z": "8632f2b8.e5292",
+        "group": "93fc500b0ee1249a",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Min Temperatura",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 673,
+        "y": 1092,
+        "wires": []
+    },
+    {
+        "id": "8d9b455db5995bce",
+        "type": "ui_text",
+        "z": "8632f2b8.e5292",
+        "group": "93fc500b0ee1249a",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Media Temperatura",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 673,
+        "y": 1031,
+        "wires": []
+    },
+    {
+        "id": "598ebfdd608b1ec4",
+        "type": "smooth",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "property": "payload",
+        "action": "max",
+        "count": "288",
+        "round": "",
+        "mult": "single",
+        "x": 400,
+        "y": 980,
+        "wires": [
+            [
+                "a21cd40902cd14cb"
+            ]
+        ]
+    },
+    {
+        "id": "342b3156a171d5e9",
+        "type": "smooth",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "property": "payload",
+        "action": "min",
+        "count": "288",
+        "round": "1",
+        "mult": "single",
+        "x": 397,
+        "y": 1089,
+        "wires": [
+            [
+                "043e0fae1a059a93"
+            ]
+        ]
+    },
+    {
+        "id": "c4f4326cb5b2a7be",
+        "type": "smooth",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "288",
+        "round": "1",
+        "mult": "single",
+        "x": 398,
+        "y": 1028,
+        "wires": [
+            [
+                "8d9b455db5995bce"
+            ]
+        ]
     },
     {
         "id": "29d283c0.4e6e5c",
@@ -1578,8 +1793,8 @@
         ],
         "seg1": "18",
         "seg2": "23",
-        "x": 530,
-        "y": 140,
+        "x": 570,
+        "y": 180,
         "wires": []
     },
     {
@@ -2002,12 +2217,11 @@
         "func": "var newMsg = { topic: \"Temp. Sala\", payload: msg.payload };\nreturn newMsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 310,
-        "y": 220,
+        "x": 350,
+        "y": 320,
         "wires": [
             [
-                "d758b8d1.90b8b8",
-                "1fad55aabfafee55"
+                "d758b8d1.90b8b8"
             ]
         ]
     },
@@ -2085,9 +2299,9 @@
         "wires": [
             [
                 "ffdceda3.ebc8e",
-                "40300229.88528c",
                 "4a158689.e57d78",
-                "b45568f5.4e1bf8"
+                "b45568f5.4e1bf8",
+                "40300229.88528c"
             ]
         ]
     },
@@ -2295,23 +2509,6 @@
         "wires": []
     },
     {
-        "id": "1fad55aabfafee55",
-        "type": "smooth",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "property": "payload",
-        "action": "low",
-        "count": "10",
-        "round": "1",
-        "mult": "single",
-        "reduce": false,
-        "x": 480,
-        "y": 420,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "592713b8018b1ed7",
         "type": "debug",
         "z": "37bf65d0.2750da",
@@ -2400,8 +2597,8 @@
         ],
         "seg1": "18",
         "seg2": "23",
-        "x": 564,
-        "y": 176,
+        "x": 540,
+        "y": 160,
         "wires": []
     },
     {
@@ -2440,8 +2637,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 525,
-        "y": 224,
+        "x": 580,
+        "y": 380,
         "wires": [
             []
         ]
@@ -2571,8 +2768,8 @@
         "correl": "",
         "expiry": "",
         "broker": "965f3d6f.d5282",
-        "x": 708,
-        "y": 721,
+        "x": 470,
+        "y": 820,
         "wires": []
     },
     {
@@ -2597,8 +2794,8 @@
         ],
         "seg1": "18",
         "seg2": "21",
-        "x": 680,
-        "y": 807,
+        "x": 480,
+        "y": 900,
         "wires": []
     },
     {
@@ -2631,8 +2828,8 @@
         "correl": "",
         "expiry": "",
         "broker": "965f3d6f.d5282",
-        "x": 499,
-        "y": 503,
+        "x": 490,
+        "y": 620,
         "wires": []
     },
     {
@@ -2645,8 +2842,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 506,
-        "y": 613,
+        "x": 497,
+        "y": 730,
         "wires": []
     },
     {
@@ -2661,8 +2858,8 @@
         "label": "Setpoint Temperatura camera1",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 522,
-        "y": 381,
+        "x": 477,
+        "y": 537,
         "wires": []
     },
     {
@@ -2675,8 +2872,8 @@
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
         "inputs": 0,
-        "x": 243,
-        "y": 380,
+        "x": 198,
+        "y": 536,
         "wires": [
             [
                 "fce8e734.9daa18"
@@ -2693,8 +2890,8 @@
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
         "inputs": 0,
-        "x": 218,
-        "y": 294,
+        "x": 173,
+        "y": 450,
         "wires": [
             [
                 "26be6da2.3d7d02",
@@ -2712,8 +2909,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 501,
-        "y": 309,
+        "x": 456,
+        "y": 465,
         "wires": []
     },
     {
@@ -2812,8 +3009,8 @@
         "topic": "shellies/shelly1-B97B5D/relay/0",
         "payload": "[]",
         "payloadType": "json",
-        "x": 237,
-        "y": 234,
+        "x": 192,
+        "y": 390,
         "wires": [
             [
                 "26be6da2.3d7d02",
@@ -2829,8 +3026,8 @@
         "func": "var newMsg = { topic: \"Temp. Camera Bimbi\", payload: msg.payload };\nreturn newMsg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 297,
-        "y": 188,
+        "x": 330,
+        "y": 260,
         "wires": [
             [
                 "26be6da2.3d7d02"
@@ -2889,8 +3086,8 @@
         "min": "15",
         "max": "23",
         "step": "0.5",
-        "x": 228,
-        "y": 735,
+        "x": 208,
+        "y": 835,
         "wires": [
             [
                 "73da35a4.d3745c",
@@ -2926,10 +3123,10 @@
         "y": 129,
         "wires": [
             [
-                "1f65e3ac.13358c",
                 "e969e8b5.eded78",
                 "c2cc46c8.57b6e8",
-                "f0143fb6.bc142"
+                "f0143fb6.bc142",
+                "1f65e3ac.13358c"
             ]
         ]
     },
@@ -2982,8 +3179,8 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 240,
-        "y": 560,
+        "x": 231,
+        "y": 677,
         "wires": [
             [
                 "80c0d66.1d33328",
