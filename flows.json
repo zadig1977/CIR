@@ -1112,13 +1112,10 @@
         "y": 820,
         "wires": [
             [
-                "1fba7e406bfa91c2",
-                "615e7894bab27a14",
-                "598ebfdd608b1ec4",
-                "c4f4326cb5b2a7be",
-                "342b3156a171d5e9"
+                "74da647ef4c2dc0b"
             ]
-        ]
+        ],
+        "info": "192.168.1."
     },
     {
         "id": "615e7894bab27a14",
@@ -1142,7 +1139,7 @@
         ],
         "seg1": "15",
         "seg2": "28",
-        "x": 670,
+        "x": 930,
         "y": 900,
         "wires": []
     },
@@ -1183,7 +1180,7 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
-        "x": 670,
+        "x": 930,
         "y": 820,
         "wires": [
             []
@@ -1201,7 +1198,7 @@
         "label": "Max Temperatura",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 670,
+        "x": 930,
         "y": 980,
         "wires": []
     },
@@ -1217,7 +1214,7 @@
         "label": "Min Temperatura",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 673,
+        "x": 933,
         "y": 1092,
         "wires": []
     },
@@ -1233,7 +1230,7 @@
         "label": "Media Temperatura",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 673,
+        "x": 933,
         "y": 1031,
         "wires": []
     },
@@ -1247,7 +1244,7 @@
         "count": "288",
         "round": "",
         "mult": "single",
-        "x": 400,
+        "x": 660,
         "y": 980,
         "wires": [
             [
@@ -1265,7 +1262,7 @@
         "count": "288",
         "round": "1",
         "mult": "single",
-        "x": 397,
+        "x": 657,
         "y": 1089,
         "wires": [
             [
@@ -1283,11 +1280,35 @@
         "count": "288",
         "round": "1",
         "mult": "single",
-        "x": 398,
+        "x": 658,
         "y": 1028,
         "wires": [
             [
                 "8d9b455db5995bce"
+            ]
+        ]
+    },
+    {
+        "id": "74da647ef4c2dc0b",
+        "type": "rbe",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "func": "narrowband",
+        "gap": "20%",
+        "start": "",
+        "inout": "in",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 410,
+        "y": 820,
+        "wires": [
+            [
+                "1fba7e406bfa91c2",
+                "615e7894bab27a14",
+                "598ebfdd608b1ec4",
+                "c4f4326cb5b2a7be",
+                "342b3156a171d5e9"
             ]
         ]
     },
@@ -2105,7 +2126,10 @@
         "name": "setpoint PID sala",
         "topic": "CIR/setpoint/pid/sala",
         "qos": "0",
+        "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 200,
         "y": 520,
@@ -2193,6 +2217,18 @@
         "type": "inject",
         "z": "37bf65d0.2750da",
         "name": "reset graph",
+        "props": [
+            {
+                "p": "payload",
+                "v": "[]",
+                "vt": "json"
+            },
+            {
+                "p": "topic",
+                "v": "shellies/shelly1-B97B5D/relay/0",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -2368,6 +2404,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 820,
         "y": 160,
@@ -2416,8 +2454,8 @@
         "z": "37bf65d0.2750da",
         "name": "",
         "topic": "",
-        "qos": "1",
-        "retain": "true",
+        "qos": "0",
+        "retain": "false",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -3215,6 +3253,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 890,
         "y": 140,
@@ -3262,8 +3302,8 @@
         "z": "a3306a25.d81ac8",
         "name": "",
         "topic": "",
-        "qos": "1",
-        "retain": "true",
+        "qos": "0",
+        "retain": "false",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -3971,6 +4011,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 890,
         "y": 140,
@@ -4018,8 +4060,8 @@
         "z": "31446cab.0a54a4",
         "name": "",
         "topic": "",
-        "qos": "1",
-        "retain": "true",
+        "qos": "0",
+        "retain": "false",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -4816,6 +4858,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 870,
         "y": 140,
@@ -4863,8 +4907,8 @@
         "z": "4c6b6b8f.28f984",
         "name": "",
         "topic": "",
-        "qos": "1",
-        "retain": "true",
+        "qos": "0",
+        "retain": "false",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
