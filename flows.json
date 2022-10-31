@@ -226,15 +226,6 @@
         "collapse": false
     },
     {
-        "id": "e759ac61.c8f3e",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "5cb7e7a7.be6568",
-        "order": 2,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "86114fe5.3d1b7",
         "type": "ui_tab",
         "name": "Camera Nicola",
@@ -1521,7 +1512,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "80696581.3750e8",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "label": "Stanze accese",
@@ -1608,7 +1599,7 @@
         "correl": "",
         "expiry": "",
         "broker": "965f3d6f.d5282",
-        "x": 640,
+        "x": 700,
         "y": 560,
         "wires": []
     },
@@ -1620,7 +1611,7 @@
         "label": "orario di rientro",
         "tooltip": "",
         "group": "80696581.3750e8",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -1628,8 +1619,8 @@
         "delay": "500",
         "topic": "topic",
         "topicType": "str",
-        "x": 260,
-        "y": 720,
+        "x": 940,
+        "y": 560,
         "wires": [
             [
                 "404338fd2813efb9"
@@ -1650,8 +1641,8 @@
         "correl": "",
         "expiry": "",
         "broker": "965f3d6f.d5282",
-        "x": 600,
-        "y": 720,
+        "x": 1280,
+        "y": 560,
         "wires": []
     },
     {
@@ -1680,7 +1671,7 @@
         "type": "debug",
         "z": "557d497a.18f0c8",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1695,31 +1686,31 @@
         "id": "feff66ef99b49ea6",
         "type": "ui_led",
         "z": "557d497a.18f0c8",
-        "order": 1,
+        "order": 4,
         "group": "80696581.3750e8",
         "width": 0,
         "height": 0,
-        "label": "Abilitazione",
+        "label": "Abilitazione Gita",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
             {
                 "color": "#ffff00",
-                "value": "True",
+                "value": "False",
                 "valueType": "str"
             },
             {
                 "color": "#008000",
-                "value": "False",
+                "value": "True",
                 "valueType": "str"
             }
         ],
         "allowColorForValueInMessage": false,
         "shape": "square",
         "showGlow": true,
-        "name": "led abilitazione",
-        "x": 660,
-        "y": 640,
+        "name": "led abilitazione gita",
+        "x": 730,
+        "y": 620,
         "wires": []
     },
     {
@@ -1730,7 +1721,7 @@
         "label": "Abilitazione Gita",
         "tooltip": "",
         "group": "80696581.3750e8",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -1752,9 +1743,77 @@
         "wires": [
             [
                 "4363a617253e2fa1",
+                "1b50b695e692f4bd",
                 "feff66ef99b49ea6"
             ]
         ]
+    },
+    {
+        "id": "1b50b695e692f4bd",
+        "type": "debug",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e9e8e1939de0e6cd",
+        "type": "mqtt in",
+        "z": "557d497a.18f0c8",
+        "name": "Master enable",
+        "topic": "CIR/enable/home",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 250,
+        "y": 680,
+        "wires": [
+            [
+                "f14b99b361ce2f66"
+            ]
+        ]
+    },
+    {
+        "id": "f14b99b361ce2f66",
+        "type": "ui_led",
+        "z": "557d497a.18f0c8",
+        "order": 1,
+        "group": "80696581.3750e8",
+        "width": 0,
+        "height": 0,
+        "label": "Abilitazione Generale",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "False",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "True",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "led abilitazione generale",
+        "x": 730,
+        "y": 680,
+        "wires": []
     },
     {
         "id": "ab8884d1.3326c8",
