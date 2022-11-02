@@ -1100,7 +1100,7 @@
         "rap": false,
         "inputs": 0,
         "x": 200,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
                 "74da647ef4c2dc0b"
@@ -1131,7 +1131,7 @@
         "seg1": "15",
         "seg2": "28",
         "x": 930,
-        "y": 900,
+        "y": 1000,
         "wires": []
     },
     {
@@ -1172,7 +1172,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "x": 930,
-        "y": 820,
+        "y": 920,
         "wires": [
             []
         ]
@@ -1190,7 +1190,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 930,
-        "y": 980,
+        "y": 1080,
         "wires": []
     },
     {
@@ -1206,7 +1206,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 933,
-        "y": 1092,
+        "y": 1192,
         "wires": []
     },
     {
@@ -1222,7 +1222,7 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 933,
-        "y": 1031,
+        "y": 1131,
         "wires": []
     },
     {
@@ -1236,7 +1236,7 @@
         "round": "",
         "mult": "single",
         "x": 660,
-        "y": 980,
+        "y": 1080,
         "wires": [
             [
                 "a21cd40902cd14cb"
@@ -1254,7 +1254,7 @@
         "round": "1",
         "mult": "single",
         "x": 657,
-        "y": 1089,
+        "y": 1189,
         "wires": [
             [
                 "043e0fae1a059a93"
@@ -1272,7 +1272,7 @@
         "round": "1",
         "mult": "single",
         "x": 658,
-        "y": 1028,
+        "y": 1128,
         "wires": [
             [
                 "8d9b455db5995bce"
@@ -1287,19 +1287,63 @@
         "func": "narrowband",
         "gap": "20%",
         "start": "",
-        "inout": "in",
+        "inout": "out",
         "septopics": true,
         "property": "payload",
         "topi": "topic",
         "x": 410,
-        "y": 820,
+        "y": 920,
         "wires": [
             [
-                "1fba7e406bfa91c2",
                 "615e7894bab27a14",
                 "598ebfdd608b1ec4",
                 "c4f4326cb5b2a7be",
-                "342b3156a171d5e9"
+                "342b3156a171d5e9",
+                "1a9a54d19032211c"
+            ]
+        ]
+    },
+    {
+        "id": "c8398ecf8abc8bdb",
+        "type": "inject",
+        "z": "8632f2b8.e5292",
+        "name": "reset graph",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 670,
+        "y": 860,
+        "wires": [
+            [
+                "1fba7e406bfa91c2"
+            ]
+        ]
+    },
+    {
+        "id": "1a9a54d19032211c",
+        "type": "function",
+        "z": "8632f2b8.e5292",
+        "name": "topic temp",
+        "func": "var newMsg = { topic: \"Temp. Nord\", payload: msg.payload };\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 920,
+        "wires": [
+            [
+                "1fba7e406bfa91c2"
             ]
         ]
     },
@@ -2110,9 +2154,10 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": true,
+        "passthru": false,
         "decouple": "false",
         "topic": "CIR/setpoint/mode/sala",
+        "topicType": "str",
         "style": "",
         "onvalue": "auto",
         "onvalueType": "str",
@@ -2122,6 +2167,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
         "x": 171,
         "y": 756,
         "wires": [
@@ -3120,9 +3166,12 @@
         "type": "function",
         "z": "a3306a25.d81ac8",
         "name": "topic temp",
-        "func": "var newMsg = { topic: \"Temp. Camera Bimbi\", payload: msg.payload };\nreturn newMsg;",
+        "func": "var newMsg = { topic: \"Temp. Camera Nicola\", payload: msg.payload };\nreturn newMsg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
         "x": 330,
         "y": 260,
         "wires": [
@@ -3264,9 +3313,10 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": true,
+        "passthru": false,
         "decouple": "false",
         "topic": "CIR/setpoint/mode/studio",
+        "topicType": "str",
         "style": "",
         "onvalue": "auto",
         "onvalueType": "str",
@@ -3276,6 +3326,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
         "x": 231,
         "y": 677,
         "wires": [
@@ -3742,9 +3793,10 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": true,
+        "passthru": false,
         "decouple": "false",
         "topic": "CIR/setpoint/mode/camera2",
+        "topicType": "str",
         "style": "",
         "onvalue": "auto",
         "onvalueType": "str",
@@ -3754,6 +3806,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
+        "animate": true,
         "x": 225,
         "y": 554,
         "wires": [
