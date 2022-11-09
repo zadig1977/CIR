@@ -178,7 +178,7 @@
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "Centralina Riscaldamento",
             "hideToolbar": "false",
             "allowSwipe": "true",
             "lockMenu": "false",
