@@ -1530,7 +1530,8 @@
         "wires": [
             [
                 "2a526865.083b38",
-                "5b912c22.b25fb4"
+                "5b912c22.b25fb4",
+                "4e254c6a77f240ba"
             ]
         ]
     },
@@ -1547,7 +1548,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 590,
-        "y": 240,
+        "y": 220,
         "wires": []
     },
     {
@@ -1556,7 +1557,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "80696581.3750e8",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "label": "Stanze accese",
@@ -1587,8 +1588,8 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
-        "x": 630,
-        "y": 320,
+        "x": 600,
+        "y": 340,
         "wires": [
             []
         ]
@@ -1857,6 +1858,32 @@
         "name": "led abilitazione generale",
         "x": 730,
         "y": 680,
+        "wires": []
+    },
+    {
+        "id": "4e254c6a77f240ba",
+        "type": "ui_gauge",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "80696581.3750e8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "compass",
+        "title": "N Stanze accese",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "4",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 610,
+        "y": 280,
         "wires": []
     },
     {
