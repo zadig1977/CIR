@@ -235,16 +235,6 @@
         "hidden": false
     },
     {
-        "id": "587d4a73.12b594",
-        "type": "ui_group",
-        "name": "Batteria",
-        "tab": "d7c24e27.ee1d7",
-        "order": 4,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
         "id": "24fb100a.8adb6",
         "type": "ui_group",
         "name": "Temp. obbiettivo",
@@ -1353,7 +1343,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "ab78bae6.dac748",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -1379,7 +1369,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "4469a851.913688",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -1453,7 +1443,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "4469a851.913688",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -1479,11 +1469,11 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "ab78bae6.dac748",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Temperatura Camera Matrimoniale",
+        "title": "Temperatura Camera Mat.",
         "label": "°C",
         "format": "{{value}}",
         "min": "10",
@@ -1495,7 +1485,7 @@
         ],
         "seg1": "18",
         "seg2": "23",
-        "x": 1020,
+        "x": 990,
         "y": 160,
         "wires": []
     },
@@ -1563,7 +1553,7 @@
         "label": "Stanze accese",
         "chartType": "line",
         "legend": "false",
-        "xformat": "HH:mm:ss",
+        "xformat": "HH:mm",
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
@@ -1887,6 +1877,194 @@
         "wires": []
     },
     {
+        "id": "49de9aa005d39ad2",
+        "type": "ui_led",
+        "z": "557d497a.18f0c8",
+        "order": 1,
+        "group": "ab78bae6.dac748",
+        "width": 0,
+        "height": 0,
+        "label": "Sala",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Sala",
+        "x": 1050,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "08b74296c1f26114",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "stato rele sala",
+        "links": [
+            "db125fabc33e25f3"
+        ],
+        "x": 875,
+        "y": 280,
+        "wires": [
+            [
+                "49de9aa005d39ad2"
+            ]
+        ]
+    },
+    {
+        "id": "d5274102c22c75d1",
+        "type": "ui_led",
+        "z": "557d497a.18f0c8",
+        "order": 3,
+        "group": "ab78bae6.dac748",
+        "width": 0,
+        "height": 0,
+        "label": "Camera Mat.",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Camera matrimoniale",
+        "x": 1100,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e051e33e0c0c8519",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "stato rele sala",
+        "links": [
+            "80bc1df6b7ade61b"
+        ],
+        "x": 875,
+        "y": 340,
+        "wires": [
+            [
+                "d5274102c22c75d1"
+            ]
+        ]
+    },
+    {
+        "id": "7cb47a16bbd877af",
+        "type": "ui_led",
+        "z": "557d497a.18f0c8",
+        "order": 3,
+        "group": "4469a851.913688",
+        "width": 0,
+        "height": 0,
+        "label": "Camera Nicola",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Camera Nik",
+        "x": 1070,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "206604612bb260bd",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "stato rele sala",
+        "links": [
+            "d2db07f333374bdd"
+        ],
+        "x": 875,
+        "y": 400,
+        "wires": [
+            [
+                "7cb47a16bbd877af"
+            ]
+        ]
+    },
+    {
+        "id": "25e44505e8271b14",
+        "type": "ui_led",
+        "z": "557d497a.18f0c8",
+        "order": 1,
+        "group": "4469a851.913688",
+        "width": 0,
+        "height": 0,
+        "label": "Camera Andrea",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Camera Andrea",
+        "x": 1080,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d9b62ab33251ae7b",
+        "type": "link in",
+        "z": "557d497a.18f0c8",
+        "name": "stato rele sala",
+        "links": [
+            "2fce3f79e87ee2eb"
+        ],
+        "x": 875,
+        "y": 460,
+        "wires": [
+            [
+                "25e44505e8271b14"
+            ]
+        ]
+    },
+    {
         "id": "ab8884d1.3326c8",
         "type": "mqtt in",
         "z": "37bf65d0.2750da",
@@ -1928,7 +2106,7 @@
         "z": "37bf65d0.2750da",
         "name": "",
         "group": "e4cfee7d.c9315",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -1954,7 +2132,7 @@
         "z": "37bf65d0.2750da",
         "name": "Sala Temp grafico",
         "group": "e4cfee7d.c9315",
-        "order": 3,
+        "order": 2,
         "width": 0,
         "height": 0,
         "label": "Temperatura",
@@ -2073,29 +2251,15 @@
         "qos": "0",
         "broker": "965f3d6f.d5282",
         "inputs": 0,
-        "x": 810,
+        "x": 830,
         "y": 320,
         "wires": [
             [
-                "a9e2ed77.1320e",
-                "e16b23f5.88fbe",
-                "aa646adb.efdc38"
+                "aa646adb.efdc38",
+                "db125fabc33e25f3",
+                "c5ced26696592d46"
             ]
         ]
-    },
-    {
-        "id": "a9e2ed77.1320e",
-        "type": "debug",
-        "z": "37bf65d0.2750da",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1175,
-        "y": 343,
-        "wires": []
     },
     {
         "id": "1b9a1b00.e27515",
@@ -2134,22 +2298,6 @@
         "seg2": "21",
         "x": 614,
         "y": 984,
-        "wires": []
-    },
-    {
-        "id": "e16b23f5.88fbe",
-        "type": "ui_text",
-        "z": "37bf65d0.2750da",
-        "group": "e4cfee7d.c9315",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Riscaldamento",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "x": 1193,
-        "y": 284,
         "wires": []
     },
     {
@@ -2277,7 +2425,7 @@
         "z": "37bf65d0.2750da",
         "name": "PID out",
         "group": "e4cfee7d.c9315",
-        "order": 4,
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "PID out",
@@ -2321,8 +2469,8 @@
         "func": "if (msg.payload === \"on\") {\n    var newMsg = { payload: '1' };\n    return newMsg;\n} else {\n    var newMsg = { payload: '0' };\n    return newMsg\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 955,
-        "y": 400,
+        "x": 1010,
+        "y": 360,
         "wires": [
             [
                 "6cc3471d.009208",
@@ -2340,8 +2488,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1155,
-        "y": 395,
+        "x": 1210,
+        "y": 360,
         "wires": []
     },
     {
@@ -2491,7 +2639,7 @@
         "z": "37bf65d0.2750da",
         "name": "Relè sala",
         "group": "e4cfee7d.c9315",
-        "order": 5,
+        "order": 4,
         "width": 0,
         "height": 0,
         "label": "stato rele",
@@ -2521,8 +2669,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 1141,
-        "y": 445,
+        "x": 1200,
+        "y": 420,
         "wires": [
             []
         ]
@@ -2708,6 +2856,50 @@
         "statusType": "auto",
         "x": 1170,
         "y": 100,
+        "wires": []
+    },
+    {
+        "id": "db125fabc33e25f3",
+        "type": "link out",
+        "z": "37bf65d0.2750da",
+        "name": "stato rele sala",
+        "mode": "link",
+        "links": [
+            "08b74296c1f26114"
+        ],
+        "x": 1025,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c5ced26696592d46",
+        "type": "ui_led",
+        "z": "37bf65d0.2750da",
+        "order": 4,
+        "group": "23795de0.4c4a2a",
+        "width": 0,
+        "height": 0,
+        "label": "Stao Riscaldamento",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "led rele sala",
+        "x": 1070,
+        "y": 280,
         "wires": []
     },
     {
@@ -2900,29 +3092,15 @@
         "qos": "0",
         "broker": "965f3d6f.d5282",
         "inputs": 0,
-        "x": 880,
+        "x": 890,
         "y": 360,
         "wires": [
             [
-                "b46b119f.33b86",
-                "7ee20793.0a6198",
-                "1572b970.c9d977"
+                "1572b970.c9d977",
+                "d2db07f333374bdd",
+                "298209d33dbef905"
             ]
         ]
-    },
-    {
-        "id": "b46b119f.33b86",
-        "type": "debug",
-        "z": "a3306a25.d81ac8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1245,
-        "y": 383,
-        "wires": []
     },
     {
         "id": "73da35a4.d3745c",
@@ -2966,22 +3144,6 @@
         "seg2": "21",
         "x": 480,
         "y": 900,
-        "wires": []
-    },
-    {
-        "id": "7ee20793.0a6198",
-        "type": "ui_text",
-        "z": "a3306a25.d81ac8",
-        "group": "86d45bb5.76b4f8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Riscaldamento",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "x": 1214,
-        "y": 317,
         "wires": []
     },
     {
@@ -3087,12 +3249,12 @@
         "id": "ea007954.97b398",
         "type": "ui_chart",
         "z": "a3306a25.d81ac8",
-        "name": "camera1 Temp",
+        "name": "camera Nik PID",
         "group": "86d45bb5.76b4f8",
         "order": 4,
         "width": "0",
         "height": "0",
-        "label": "stato relè & PID out",
+        "label": "PID out",
         "chartType": "line",
         "legend": "false",
         "xformat": "dd HH:mm",
@@ -3119,6 +3281,7 @@
             "#c5b0d5"
         ],
         "outputs": 1,
+        "useDifferentColor": false,
         "x": 1241,
         "y": 509,
         "wires": [
@@ -3133,8 +3296,8 @@
         "func": "if (msg.payload === \"on\") {\n    var newMsg = { payload: '1' };\n    return newMsg;\n} else {\n    var newMsg = { payload: '0' };\n    return newMsg\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 1025,
-        "y": 440,
+        "x": 1050,
+        "y": 360,
         "wires": [
             [
                 "4b99b56a.8a7c1c"
@@ -3151,8 +3314,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1225,
-        "y": 435,
+        "x": 1230,
+        "y": 360,
         "wires": []
     },
     {
@@ -3514,6 +3677,50 @@
         "wires": []
     },
     {
+        "id": "d2db07f333374bdd",
+        "type": "link out",
+        "z": "a3306a25.d81ac8",
+        "name": "stato rele Nicola",
+        "mode": "link",
+        "links": [
+            "206604612bb260bd"
+        ],
+        "x": 1015,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "298209d33dbef905",
+        "type": "ui_led",
+        "z": "a3306a25.d81ac8",
+        "order": 4,
+        "group": "e6fa4a1e.0ac0e",
+        "width": 0,
+        "height": 0,
+        "label": "Stao Riscaldamento",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "led rele Nik",
+        "x": 1070,
+        "y": 300,
+        "wires": []
+    },
+    {
         "id": "8a089b16.24a518",
         "type": "mqtt in",
         "z": "31446cab.0a54a4",
@@ -3722,32 +3929,20 @@
         "name": "relay",
         "topic": "shellies/shelly1-E09806952AC7/relay/0",
         "qos": "0",
-        "datatype": "auto",
+        "datatype": "auto-detect",
         "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
-        "x": 900,
+        "x": 890,
         "y": 300,
         "wires": [
             [
-                "659e4ed2.ce0bc",
-                "875d117c.41346",
-                "96088b9.6ce6b78"
+                "96088b9.6ce6b78",
+                "2fce3f79e87ee2eb",
+                "0b7a2dc7fedb0537"
             ]
         ]
-    },
-    {
-        "id": "659e4ed2.ce0bc",
-        "type": "debug",
-        "z": "31446cab.0a54a4",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1265,
-        "y": 323,
-        "wires": []
     },
     {
         "id": "def2babe.6fa298",
@@ -3773,22 +3968,6 @@
         "seg2": "21",
         "x": 655,
         "y": 802,
-        "wires": []
-    },
-    {
-        "id": "875d117c.41346",
-        "type": "ui_text",
-        "z": "31446cab.0a54a4",
-        "group": "4b9341ac.5cfd9",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Riscaldamento",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "x": 1234,
-        "y": 257,
         "wires": []
     },
     {
@@ -3928,12 +4107,12 @@
         "id": "72ee61d7.75546",
         "type": "ui_chart",
         "z": "31446cab.0a54a4",
-        "name": "camera2 Temp",
+        "name": "camera Andrea PID",
         "group": "4b9341ac.5cfd9",
         "order": 4,
         "width": "0",
         "height": "0",
-        "label": "stato relè & PID out",
+        "label": "PID out",
         "chartType": "line",
         "legend": "false",
         "xformat": "dd HH:mm",
@@ -3960,8 +4139,9 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 1261,
-        "y": 449,
+        "useDifferentColor": false,
+        "x": 1230,
+        "y": 460,
         "wires": [
             []
         ]
@@ -3974,8 +4154,8 @@
         "func": "if (msg.payload === \"on\") {\n    var newMsg = { payload: '1' };\n    return newMsg;\n} else {\n    var newMsg = { payload: '0' };\n    return newMsg\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 1045,
-        "y": 380,
+        "x": 1050,
+        "y": 340,
         "wires": [
             [
                 "b2f32d93.48ff4"
@@ -3992,8 +4172,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1245,
-        "y": 375,
+        "x": 1230,
+        "y": 340,
         "wires": []
     },
     {
@@ -4323,6 +4503,50 @@
         "wires": []
     },
     {
+        "id": "2fce3f79e87ee2eb",
+        "type": "link out",
+        "z": "31446cab.0a54a4",
+        "name": "stato rele Andrea",
+        "mode": "link",
+        "links": [
+            "d9b62ab33251ae7b"
+        ],
+        "x": 1015,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0b7a2dc7fedb0537",
+        "type": "ui_led",
+        "z": "31446cab.0a54a4",
+        "order": 4,
+        "group": "4002d468.7f34c4",
+        "width": 0,
+        "height": 0,
+        "label": "Stao Riscaldamento",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "led rele Andrea",
+        "x": 1080,
+        "y": 260,
+        "wires": []
+    },
+    {
         "id": "356a21ef.44b63e",
         "type": "mqtt in",
         "z": "4c6b6b8f.28f984",
@@ -4532,29 +4756,15 @@
         "datatype": "auto",
         "broker": "965f3d6f.d5282",
         "inputs": 0,
-        "x": 880,
-        "y": 360,
+        "x": 890,
+        "y": 300,
         "wires": [
             [
-                "36bf1b32.db1d84",
-                "8f0a8eff.81aa6",
-                "51b90ec2.efa3a"
+                "51b90ec2.efa3a",
+                "80bc1df6b7ade61b",
+                "32c219e50211e636"
             ]
         ]
-    },
-    {
-        "id": "36bf1b32.db1d84",
-        "type": "debug",
-        "z": "4c6b6b8f.28f984",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 1245,
-        "y": 383,
-        "wires": []
     },
     {
         "id": "82348f52.54f2a",
@@ -4598,22 +4808,6 @@
         "seg2": "21",
         "x": 655,
         "y": 802,
-        "wires": []
-    },
-    {
-        "id": "8f0a8eff.81aa6",
-        "type": "ui_text",
-        "z": "4c6b6b8f.28f984",
-        "group": "bc9a3e3a.19436",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Riscaldamento",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "x": 1214,
-        "y": 317,
         "wires": []
     },
     {
@@ -4751,12 +4945,12 @@
         "id": "60968c8f.019dc4",
         "type": "ui_chart",
         "z": "4c6b6b8f.28f984",
-        "name": "camera matrimoniale Temp",
+        "name": "camera matrimoniale PID",
         "group": "bc9a3e3a.19436",
         "order": 4,
         "width": "0",
         "height": "0",
-        "label": "stato relè & PID out",
+        "label": "PID out",
         "chartType": "line",
         "legend": "false",
         "xformat": "dd HH:mm",
@@ -4783,7 +4977,8 @@
             "#c5b0d5"
         ],
         "outputs": 1,
-        "x": 1280,
+        "useDifferentColor": false,
+        "x": 1190,
         "y": 500,
         "wires": [
             []
@@ -4797,8 +4992,8 @@
         "func": "if (msg.payload === \"on\") {\n    var newMsg = { payload: '1' };\n    return newMsg;\n} else {\n    var newMsg = { payload: '0' };\n    return newMsg\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 1025,
-        "y": 440,
+        "x": 1030,
+        "y": 400,
         "wires": [
             [
                 "72667c87.216614"
@@ -4815,8 +5010,8 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 1225,
-        "y": 435,
+        "x": 1210,
+        "y": 400,
         "wires": []
     },
     {
@@ -5124,6 +5319,50 @@
         "name": "abilitazione led",
         "x": 1120,
         "y": 140,
+        "wires": []
+    },
+    {
+        "id": "80bc1df6b7ade61b",
+        "type": "link out",
+        "z": "4c6b6b8f.28f984",
+        "name": "stato rele camera mat",
+        "mode": "link",
+        "links": [
+            "e051e33e0c0c8519"
+        ],
+        "x": 1105,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "32c219e50211e636",
+        "type": "ui_led",
+        "z": "4c6b6b8f.28f984",
+        "order": 4,
+        "group": "138f4f49.14a7c9",
+        "width": 0,
+        "height": 0,
+        "label": "Stao Riscaldamento",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0000ff",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#ff0000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "led rele Mat.",
+        "x": 1130,
+        "y": 340,
         "wires": []
     }
 ]
