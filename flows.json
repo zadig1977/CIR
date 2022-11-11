@@ -1554,7 +1554,7 @@
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm",
-        "interpolate": "linear",
+        "interpolate": "step",
         "nodata": "",
         "dot": false,
         "ymin": "",
@@ -1578,6 +1578,7 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
+        "className": "",
         "x": 600,
         "y": 340,
         "wires": [
