@@ -278,7 +278,7 @@
         "type": "ui_group",
         "name": "Temp",
         "tab": "9605b1ff.918dc",
-        "order": 2,
+        "order": 3,
         "disp": false,
         "width": "6",
         "collapse": false
@@ -346,7 +346,7 @@
         "type": "ui_group",
         "name": "Temp2",
         "tab": "9605b1ff.918dc",
-        "order": 3,
+        "order": 4,
         "disp": false,
         "width": "6",
         "collapse": false
@@ -396,7 +396,7 @@
         "type": "ui_group",
         "name": "Room",
         "tab": "9605b1ff.918dc",
-        "order": 1,
+        "order": 2,
         "disp": false,
         "width": "6",
         "collapse": false
@@ -419,6 +419,17 @@
         "order": 2,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "187488fefa41b035",
+        "type": "ui_group",
+        "name": "Trip",
+        "tab": "9605b1ff.918dc",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "695b357f.6a8b4c",
@@ -1519,27 +1530,11 @@
         "y": 240,
         "wires": [
             [
-                "2a526865.083b38",
                 "5b912c22.b25fb4",
-                "4e254c6a77f240ba"
+                "4e254c6a77f240ba",
+                "a8ed14a9fc87925f"
             ]
         ]
-    },
-    {
-        "id": "2a526865.083b38",
-        "type": "debug",
-        "z": "557d497a.18f0c8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 590,
-        "y": 220,
-        "wires": []
     },
     {
         "id": "5b912c22.b25fb4",
@@ -1547,7 +1542,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "80696581.3750e8",
-        "order": 6,
+        "order": 3,
         "width": 0,
         "height": 0,
         "label": "Stanze accese",
@@ -1579,8 +1574,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 600,
-        "y": 340,
+        "x": 520,
+        "y": 280,
         "wires": [
             []
         ]
@@ -1646,7 +1641,7 @@
         "name": "",
         "label": "orario di rientro",
         "tooltip": "",
-        "group": "80696581.3750e8",
+        "group": "187488fefa41b035",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -1722,8 +1717,8 @@
         "id": "feff66ef99b49ea6",
         "type": "ui_led",
         "z": "557d497a.18f0c8",
-        "order": 4,
-        "group": "80696581.3750e8",
+        "order": 1,
+        "group": "187488fefa41b035",
         "width": 0,
         "height": 0,
         "label": "Abilitazione Gita",
@@ -1756,7 +1751,7 @@
         "name": "",
         "label": "Abilitazione Gita",
         "tooltip": "",
-        "group": "80696581.3750e8",
+        "group": "187488fefa41b035",
         "order": 3,
         "width": 0,
         "height": 0,
@@ -1857,7 +1852,7 @@
         "z": "557d497a.18f0c8",
         "name": "",
         "group": "80696581.3750e8",
-        "order": 5,
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "compass",
@@ -1873,8 +1868,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 610,
-        "y": 280,
+        "x": 530,
+        "y": 240,
         "wires": []
     },
     {
@@ -2063,6 +2058,50 @@
             [
                 "25e44505e8271b14"
             ]
+        ]
+    },
+    {
+        "id": "a8ed14a9fc87925f",
+        "type": "ui_chart",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "group": "80696581.3750e8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Stanze accese zoom",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 540,
+        "y": 320,
+        "wires": [
+            []
         ]
     },
     {
@@ -3262,8 +3301,8 @@
         "interpolate": "linear",
         "nodata": "",
         "dot": false,
-        "ymin": "",
-        "ymax": "",
+        "ymin": "0",
+        "ymax": "1",
         "removeOlder": 1,
         "removeOlderPoints": "",
         "removeOlderUnit": "86400",
@@ -3283,6 +3322,7 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
+        "className": "",
         "x": 1241,
         "y": 509,
         "wires": [
