@@ -42,6 +42,14 @@
         "info": ""
     },
     {
+        "id": "f58c00f1e01abb9f",
+        "type": "tab",
+        "label": "websocket",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "965f3d6f.d5282",
         "type": "mqtt-broker",
         "name": "galileo",
@@ -440,6 +448,35 @@
         "order": 4,
         "width": 1,
         "height": 1
+    },
+    {
+        "id": "26cec5113ca1a70a",
+        "type": "websocket-client",
+        "path": "ws://192.168.1.2:8100/v0_1/ws?node_red=1",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    },
+    {
+        "id": "231fb2a5afecf21a",
+        "type": "ui_tab",
+        "name": "websocket",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "86a4645b0b234808",
+        "type": "ui_group",
+        "name": "websocket",
+        "tab": "231fb2a5afecf21a",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "695b357f.6a8b4c",
@@ -5639,5 +5676,135 @@
         "x": 1130,
         "y": 340,
         "wires": []
+    },
+    {
+        "id": "4bf1bf64bf36ad9e",
+        "type": "ui_text_input",
+        "z": "f58c00f1e01abb9f",
+        "name": "",
+        "label": "Command",
+        "tooltip": "",
+        "group": "86a4645b0b234808",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": false,
+        "className": "",
+        "topicType": "msg",
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "8b631641b9ee8be1"
+            ]
+        ]
+    },
+    {
+        "id": "8b631641b9ee8be1",
+        "type": "websocket out",
+        "z": "f58c00f1e01abb9f",
+        "name": "",
+        "server": "",
+        "client": "26cec5113ca1a70a",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "58a8d59d26c7a37c",
+        "type": "websocket in",
+        "z": "f58c00f1e01abb9f",
+        "name": "",
+        "server": "",
+        "client": "26cec5113ca1a70a",
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "46d1fc2b6131f22d",
+                "87675389e2d4b75b"
+            ]
+        ]
+    },
+    {
+        "id": "276339d684d3ce71",
+        "type": "ui_table",
+        "z": "f58c00f1e01abb9f",
+        "group": "86a4645b0b234808",
+        "name": "output table",
+        "order": 2,
+        "width": "24",
+        "height": "5",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 970,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "46d1fc2b6131f22d",
+        "type": "debug",
+        "z": "f58c00f1e01abb9f",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "ca0fe0204048a745",
+        "type": "inject",
+        "z": "f58c00f1e01abb9f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "vp",
+        "payloadType": "str",
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "8b631641b9ee8be1"
+            ]
+        ]
+    },
+    {
+        "id": "87675389e2d4b75b",
+        "type": "json",
+        "z": "f58c00f1e01abb9f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 790,
+        "y": 280,
+        "wires": [
+            [
+                "276339d684d3ce71"
+            ]
+        ]
     }
 ]
