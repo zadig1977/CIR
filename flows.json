@@ -479,6 +479,17 @@
         "className": ""
     },
     {
+        "id": "83546b9fea0303a6",
+        "type": "ui_group",
+        "name": "Umidità",
+        "tab": "b29ef0dd.8d659",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "695b357f.6a8b4c",
         "type": "mqtt in",
         "z": "8632f2b8.e5292",
@@ -5676,6 +5687,117 @@
         "x": 1130,
         "y": 340,
         "wires": []
+    },
+    {
+        "id": "b617b1dc15361c34",
+        "type": "mqtt in",
+        "z": "4c6b6b8f.28f984",
+        "name": "Sensor Hum",
+        "topic": "shellies/shellyht-95705B/sensor/humidity",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "965f3d6f.d5282",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 900,
+        "wires": [
+            [
+                "0109da867532754f",
+                "697f89b61dbbbb22"
+            ]
+        ]
+    },
+    {
+        "id": "0109da867532754f",
+        "type": "ui_gauge",
+        "z": "4c6b6b8f.28f984",
+        "name": "",
+        "group": "83546b9fea0303a6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Umidità Camera matrimoniale",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#0000ff",
+            "#00bf00",
+            "#ca3838"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "className": "",
+        "x": 410,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "4fa1e08b6747273e",
+        "type": "ui_chart",
+        "z": "4c6b6b8f.28f984",
+        "name": "Camera matrimoniale Temp",
+        "group": "83546b9fea0303a6",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Umidità",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#ff8000",
+            "#00ffff",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 560,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "697f89b61dbbbb22",
+        "type": "function",
+        "z": "4c6b6b8f.28f984",
+        "name": "topic temp",
+        "func": "var newMsg = { topic: \"Umidità Camera Mat\", payload: msg.payload };\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 960,
+        "wires": [
+            [
+                "4fa1e08b6747273e"
+            ]
+        ]
     },
     {
         "id": "4bf1bf64bf36ad9e",
