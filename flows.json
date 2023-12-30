@@ -452,7 +452,7 @@
     {
         "id": "26cec5113ca1a70a",
         "type": "websocket-client",
-        "path": "ws://192.168.1.2:8100/v0_1/ws?node_red=1",
+        "path": "ws://192.168.1.2:8100/v0_1/ws",
         "tls": "",
         "wholemsg": "false",
         "hb": "0",
@@ -1073,7 +1073,8 @@
         "wires": [
             [
                 "cf03e992493ca497",
-                "64b5c9a6e68401de"
+                "64b5c9a6e68401de",
+                "aa6affaf334bb7ca"
             ]
         ]
     },
@@ -1404,6 +1405,50 @@
             [
                 "1fba7e406bfa91c2"
             ]
+        ]
+    },
+    {
+        "id": "aa6affaf334bb7ca",
+        "type": "ui_chart",
+        "z": "8632f2b8.e5292",
+        "name": "",
+        "group": "e6a59d78.b2002",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Irraggiamento gior.",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1070,
+        "y": 760,
+        "wires": [
+            []
         ]
     },
     {
@@ -2261,6 +2306,179 @@
         "x": 610,
         "y": 900,
         "wires": []
+    },
+    {
+        "id": "19aa58f7b0a8f3bc",
+        "type": "websocket out",
+        "z": "557d497a.18f0c8",
+        "name": "check ver",
+        "server": "",
+        "client": "26cec5113ca1a70a",
+        "x": 380,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "4761d6229d21132c",
+        "type": "inject",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ver",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1020,
+        "wires": [
+            [
+                "19aa58f7b0a8f3bc"
+            ]
+        ]
+    },
+    {
+        "id": "1093e84db70f7ea7",
+        "type": "websocket in",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "server": "",
+        "client": "26cec5113ca1a70a",
+        "x": 240,
+        "y": 1080,
+        "wires": [
+            [
+                "119b33c1d168fe09"
+            ]
+        ]
+    },
+    {
+        "id": "6d45553becc96eb4",
+        "type": "e-mail",
+        "z": "557d497a.18f0c8",
+        "server": "smtp.apollonio.net",
+        "port": "25",
+        "authtype": "BASIC",
+        "saslformat": true,
+        "token": "oauth2Response.access_token",
+        "secure": false,
+        "tls": false,
+        "name": "zadig@apollonio.net",
+        "dname": "mailto",
+        "x": 1170,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "119b33c1d168fe09",
+        "type": "json",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 1080,
+        "wires": [
+            [
+                "57250f2bf00a2ef4"
+            ]
+        ]
+    },
+    {
+        "id": "57250f2bf00a2ef4",
+        "type": "change",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[\"Cir version\"]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 1080,
+        "wires": [
+            [
+                "d6a8dbb2a241d5ce"
+            ]
+        ]
+    },
+    {
+        "id": "d6a8dbb2a241d5ce",
+        "type": "switch",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "3.3.226",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 1080,
+        "wires": [
+            [
+                "8bb0c7efd9037c3e"
+            ]
+        ]
+    },
+    {
+        "id": "ac70e29e42b4aba8",
+        "type": "comment",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "info": "Node per verificare che cir_engine sta funzionando",
+        "x": 160,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "8bb0c7efd9037c3e",
+        "type": "change",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "cir_engine is not working",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 1080,
+        "wires": [
+            [
+                "6d45553becc96eb4"
+            ]
+        ]
     },
     {
         "id": "ab8884d1.3326c8",
@@ -3173,7 +3391,7 @@
         "type": "debug",
         "z": "37bf65d0.2750da",
         "name": "debug 2",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
