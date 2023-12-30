@@ -2328,7 +2328,7 @@
                 "p": "payload"
             }
         ],
-        "repeat": "5",
+        "repeat": "300",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
