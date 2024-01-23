@@ -1708,7 +1708,7 @@
         "type": "debug",
         "z": "557d497a.18f0c8",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1889,7 +1889,7 @@
         "type": "debug",
         "z": "557d497a.18f0c8",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2311,11 +2311,11 @@
         "id": "19aa58f7b0a8f3bc",
         "type": "websocket out",
         "z": "557d497a.18f0c8",
-        "name": "check ver",
+        "name": "alive",
         "server": "",
         "client": "26cec5113ca1a70a",
-        "x": 380,
-        "y": 1020,
+        "x": 970,
+        "y": 1060,
         "wires": []
     },
     {
@@ -2325,7 +2325,9 @@
         "name": "",
         "props": [
             {
-                "p": "payload"
+                "p": "timestamp",
+                "v": "",
+                "vt": "date"
             }
         ],
         "repeat": "300",
@@ -2333,13 +2335,11 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "ver",
-        "payloadType": "str",
         "x": 170,
-        "y": 1020,
+        "y": 1060,
         "wires": [
             [
-                "19aa58f7b0a8f3bc"
+                "3e67c49c9cae9d45"
             ]
         ]
     },
@@ -2351,7 +2351,7 @@
         "server": "",
         "client": "26cec5113ca1a70a",
         "x": 240,
-        "y": 1080,
+        "y": 1160,
         "wires": [
             [
                 "119b33c1d168fe09"
@@ -2371,8 +2371,8 @@
         "tls": false,
         "name": "zadig@apollonio.net",
         "dname": "mailto",
-        "x": 1170,
-        "y": 1080,
+        "x": 1230,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2384,7 +2384,7 @@
         "action": "",
         "pretty": false,
         "x": 470,
-        "y": 1080,
+        "y": 1160,
         "wires": [
             [
                 "57250f2bf00a2ef4"
@@ -2401,8 +2401,15 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "payload[\"Cir version\"]",
+                "to": "payload[\"count\"]",
                 "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload-1",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -2411,7 +2418,7 @@
         "to": "",
         "reg": false,
         "x": 640,
-        "y": 1080,
+        "y": 1160,
         "wires": [
             [
                 "d6a8dbb2a241d5ce"
@@ -2428,18 +2435,24 @@
         "rules": [
             {
                 "t": "neq",
-                "v": "3.3.226",
-                "vt": "str"
+                "v": "count",
+                "vt": "flow"
+            },
+            {
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 1,
-        "x": 810,
-        "y": 1080,
+        "outputs": 2,
+        "x": 830,
+        "y": 1160,
         "wires": [
             [
                 "8bb0c7efd9037c3e"
+            ],
+            [
+                "6a79221be061c468"
             ]
         ]
     },
@@ -2450,7 +2463,7 @@
         "name": "",
         "info": "Node per verificare che cir_engine sta funzionando",
         "x": 160,
-        "y": 980,
+        "y": 1020,
         "wires": []
     },
     {
@@ -2463,7 +2476,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "cir_engine is not working",
+                "to": "cir_engine is not working: fail alive message",
                 "tot": "str"
             }
         ],
@@ -2472,13 +2485,106 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 980,
-        "y": 1080,
+        "x": 1060,
+        "y": 1160,
         "wires": [
             [
                 "6d45553becc96eb4"
             ]
         ]
+    },
+    {
+        "id": "3e67c49c9cae9d45",
+        "type": "moment",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "topic": "count",
+        "input": "timestamp",
+        "inputType": "msg",
+        "inTz": "Europe/Rome",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "s",
+        "locale": "en-US",
+        "output": "count",
+        "outputType": "msg",
+        "outTz": "Europe/Rome",
+        "x": 310,
+        "y": 1060,
+        "wires": [
+            [
+                "01ecf362ece6c41d",
+                "659df99fe84ea25b"
+            ]
+        ]
+    },
+    {
+        "id": "659df99fe84ea25b",
+        "type": "template",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "alive {{count}} {{timestamp}}",
+        "output": "str",
+        "x": 780,
+        "y": 1060,
+        "wires": [
+            [
+                "19aa58f7b0a8f3bc"
+            ]
+        ]
+    },
+    {
+        "id": "01ecf362ece6c41d",
+        "type": "change",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(count)\t",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "count",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 560,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6a79221be061c468",
+        "type": "debug",
+        "z": "557d497a.18f0c8",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 1220,
+        "wires": []
     },
     {
         "id": "ab8884d1.3326c8",
