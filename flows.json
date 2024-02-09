@@ -1163,7 +1163,8 @@
         "y": 920,
         "wires": [
             [
-                "74da647ef4c2dc0b"
+                "74da647ef4c2dc0b",
+                "b5549b195966bfb6"
             ]
         ],
         "info": "192.168.1."
@@ -1265,8 +1266,8 @@
         "label": "Min Temperatura",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 933,
-        "y": 1192,
+        "x": 930,
+        "y": 1160,
         "wires": []
     },
     {
@@ -1281,8 +1282,8 @@
         "label": "Media Temperatura",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 933,
-        "y": 1131,
+        "x": 930,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1313,8 +1314,8 @@
         "count": "288",
         "round": "1",
         "mult": "single",
-        "x": 657,
-        "y": 1189,
+        "x": 660,
+        "y": 1160,
         "wires": [
             [
                 "043e0fae1a059a93"
@@ -1331,8 +1332,8 @@
         "count": "288",
         "round": "1",
         "mult": "single",
-        "x": 658,
-        "y": 1128,
+        "x": 660,
+        "y": 1120,
         "wires": [
             [
                 "8d9b455db5995bce"
@@ -1345,7 +1346,7 @@
         "z": "8632f2b8.e5292",
         "name": "",
         "func": "narrowband",
-        "gap": "20%",
+        "gap": "100%",
         "start": "",
         "inout": "out",
         "septopics": true,
@@ -1450,6 +1451,22 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "b5549b195966bfb6",
+        "type": "debug",
+        "z": "8632f2b8.e5292",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 860,
+        "wires": []
     },
     {
         "id": "29d283c0.4e6e5c",
@@ -2587,6 +2604,20 @@
         "wires": []
     },
     {
+        "id": "0209dae2f877ea3c",
+        "type": "status",
+        "z": "557d497a.18f0c8",
+        "name": "",
+        "scope": [
+            "1093e84db70f7ea7"
+        ],
+        "x": 200,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "ab8884d1.3326c8",
         "type": "mqtt in",
         "z": "37bf65d0.2750da",
@@ -2838,7 +2869,7 @@
         "correl": "",
         "expiry": "",
         "broker": "965f3d6f.d5282",
-        "x": 430,
+        "x": 550,
         "y": 700,
         "wires": []
     },
@@ -2853,7 +2884,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "decouple": "false",
         "topic": "CIR/setpoint/mode/sala",
         "topicType": "str",
@@ -2868,8 +2899,8 @@
         "offcolor": "",
         "animate": true,
         "className": "",
-        "x": 201,
-        "y": 756,
+        "x": 320,
+        "y": 740,
         "wires": [
             [
                 "364ba5af.93977a",
@@ -2887,7 +2918,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 430,
+        "x": 550,
         "y": 760,
         "wires": []
     },
@@ -3532,6 +3563,31 @@
         "wires": [
             [
                 "cd2e05edc8918421"
+            ]
+        ]
+    },
+    {
+        "id": "0a0779bf0eca26c3",
+        "type": "inject",
+        "z": "37bf65d0.2750da",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 21 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 110,
+        "y": 740,
+        "wires": [
+            [
+                "aef16af3.f41cf8"
             ]
         ]
     },
