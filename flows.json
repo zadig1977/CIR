@@ -2328,6 +2328,7 @@
         "id": "19aa58f7b0a8f3bc",
         "type": "websocket out",
         "z": "557d497a.18f0c8",
+        "d": true,
         "name": "alive",
         "server": "",
         "client": "26cec5113ca1a70a",
@@ -2339,6 +2340,7 @@
         "id": "4761d6229d21132c",
         "type": "inject",
         "z": "557d497a.18f0c8",
+        "d": true,
         "name": "",
         "props": [
             {
@@ -2364,6 +2366,7 @@
         "id": "1093e84db70f7ea7",
         "type": "websocket in",
         "z": "557d497a.18f0c8",
+        "d": true,
         "name": "",
         "server": "",
         "client": "26cec5113ca1a70a",
@@ -6238,14 +6241,14 @@
         "z": "f58c00f1e01abb9f",
         "group": "86a4645b0b234808",
         "name": "output table",
-        "order": 2,
+        "order": 3,
         "width": "24",
         "height": "5",
         "columns": [],
         "outputs": 0,
         "cts": false,
-        "x": 970,
-        "y": 280,
+        "x": 1010,
+        "y": 220,
         "wires": []
     },
     {
@@ -6305,8 +6308,26 @@
         "y": 280,
         "wires": [
             [
-                "276339d684d3ce71"
+                "276339d684d3ce71",
+                "65295023614fe6f5"
             ]
         ]
+    },
+    {
+        "id": "65295023614fe6f5",
+        "type": "ui_text",
+        "z": "f58c00f1e01abb9f",
+        "group": "86a4645b0b234808",
+        "order": 2,
+        "width": "24",
+        "height": "5",
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1010,
+        "y": 280,
+        "wires": []
     }
 ]
