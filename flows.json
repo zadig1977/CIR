@@ -1164,7 +1164,12 @@
         "wires": [
             [
                 "74da647ef4c2dc0b",
-                "b5549b195966bfb6"
+                "b5549b195966bfb6",
+                "615e7894bab27a14",
+                "1a9a54d19032211c",
+                "598ebfdd608b1ec4",
+                "c4f4326cb5b2a7be",
+                "342b3156a171d5e9"
             ]
         ],
         "info": "192.168.1."
@@ -1352,16 +1357,10 @@
         "septopics": true,
         "property": "payload",
         "topi": "topic",
-        "x": 410,
-        "y": 920,
+        "x": 430,
+        "y": 1160,
         "wires": [
-            [
-                "615e7894bab27a14",
-                "598ebfdd608b1ec4",
-                "c4f4326cb5b2a7be",
-                "342b3156a171d5e9",
-                "1a9a54d19032211c"
-            ]
+            []
         ]
     },
     {
@@ -3573,6 +3572,7 @@
         "id": "0a0779bf0eca26c3",
         "type": "inject",
         "z": "37bf65d0.2750da",
+        "d": true,
         "name": "",
         "props": [
             {
